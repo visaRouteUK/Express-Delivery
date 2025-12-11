@@ -1,0 +1,462 @@
+( function ( $ )
+{
+	var map = {
+		data         : {},
+		loader       : false,
+		map_all_data1: {},
+		map_all_data2: {},
+		map          : {},
+		current      : {},
+		place_id     : null,
+		place_id2    : null,
+		distance     : {
+			time_reached    : "",
+			distance_km     : "",
+			distance_km_text: "",
+			distance_mi     : "",
+			distance_mi_text: ""
+		},
+		options      : '',
+		map_element  : {},
+		init ( elem, options )
+		{
+			this.map_element = elem;
+			var def = {
+				route_travel_mode: "DRIVING",
+				route_tolls      : false,
+				distance_map     : false,
+				direction_drag   : false,
+				current_location : false,
+				field_1          : '#address',
+				field_2          : '#address2',
+				latlng_1         : {},
+				latlng_2         : {},
+				country          : 'us',
+				current_address  : '',
+				current_cordinate: { lat: '', long: '' },
+				center           : {
+					lat: 46.818188,
+					lng: 8.227512
+				},
+				zoom             : 12
+			};
+			this.options = $.extend( def, options );
+
+			this.initMap();
+
+			return this;
+		},
+		get_data ()
+		{
+			$.ajax( {
+				url       : wpcm_data.ajaxurl,
+				type      : "POST",
+				data      : {
+					action: "webinane_pkg_admin_settings",
+					nonce : wpcm_data.nonce
+				},
+				beforeSend: () =>
+				{
+					this.loader = true;
+				},
+				success   : res =>
+				{
+					this.loader = false;
+					let data = res.data;
+					if ( res.success == true ) {
+						this.data = data;
+					} else {
+						this.$notify( {
+							type   : "error",
+							title  : "Error !",
+							message: data.message
+						} );
+					}
+				}
+			} );
+		},
+		data_exist ( check )
+		{
+			if ( check !== undefined ) {
+				return check;
+			}
+
+			return "";
+		},
+		autocompleteField ( selector, bounds )
+		{
+
+			let input = ( typeof selector == 'string' ) ? document.querySelector( selector ) : selector;
+
+			let _options = {
+				types                : [ "address" ],
+				componentRestrictions: {
+					country: this.options.country
+				}
+			};
+			if ( bounds ) {
+				_options.bounds = bounds;
+			}
+
+			return new google.maps.places.Autocomplete( input, _options );
+		},
+		initMap ()
+		{
+
+			if ( ! this.map_element ) {
+				return;
+			}
+
+			// The map, centered on Switzerland
+			this.map = new google.maps.Map( this.map_element, {
+				zoom        : this.options.zoom,
+				scaleControl: true,
+				center      : this.options.center
+			} );
+
+			if ( this.options.distance_map ) {
+				this.distanceInit();
+			} else {
+				this.simpleInit();
+			}
+
+			if ( this.options.current_location ) {
+				this.get_current_location();
+			}
+		},
+		/**
+		 * get Place Predictions. See more https://developers.google.com/maps/documentation/javascript/places-autocomplete#session_tokens
+		 *
+		 * @param  string input   Default value of the field.
+		 * @return Promise        Returns Promise
+		 */
+		getPlacePredictions ( input )
+		{
+			var service = new google.maps.places.AutocompleteService();
+			var sessionToken = new google.maps.places.AutocompleteSessionToken();
+
+			return new Promise( ( resolve, reject ) =>
+			{
+				service.getPlacePredictions( { input, sessionToken }, ( predictions, status ) =>
+				{
+					if ( status != google.maps.places.PlacesServiceStatus.OK ) {
+						reject( status );
+					} else {
+						resolve( predictions[ 0 ] );
+					}
+				} );
+			} );
+		},
+		distanceInit ()
+		{
+//			let input1 = document.querySelector( this.options.field_1 );
+//			let input2 = document.querySelector( this.options.field_2 );
+			let input1 = this.options.field_1;
+			let input2 = this.options.field_2;
+			if ( ! input1 || ! input2 ) {
+				console.log( input1 + ' or ' + input2 + ' Are not valid' );
+				return;
+			}
+
+			// Instatiate Google map auto complete.
+			let autocomplete1 = this.autocompleteField( input1 );
+			let autocomplete2 = this.autocompleteField( input2 );
+
+			// Set if on address change empty the data.
+			input1.addEventListener( 'change', ( res ) =>
+			{
+				this.map_all_data1 = {};
+			} );
+			// Set if on address change empty the data.
+			input2.addEventListener( 'change', ( res ) =>
+			{
+				this.map_all_data2 = {};
+			} );
+
+			// First register the event listener.
+			this.distanceEventListner( autocomplete1, autocomplete2 );
+
+			// This all need to be done if the value exists on page load.
+			if ( input1.value ) {
+				this.getPlacePredictions( input1.value, '', '' ).then( prediction =>
+				{
+					this.getPlace( autocomplete1, prediction.place_id, 'map_all_data1' );
+					if ( input2.value ) {
+						setTimeout( () =>
+						{
+							this.getPlacePredictions( input2.value, '', '' ).then( prediction =>
+							{
+								this.getPlace( autocomplete2, prediction.place_id, 'map_all_data2' );
+							} ).catch( error => alert( error ) );
+
+						}, 3000 );
+					}
+				} ).catch( error => alert( error ) );
+
+			}
+
+		},
+		simpleInit ()
+		{
+			if ( this.options.field_1 ) {
+				const autocomplete = this.autocompleteField( this.options.field_1 );
+				this.simpleEventListner( autocomplete );
+			}
+		},
+		simpleEventListner ( autocomplete )
+		{
+
+			google.maps.event.addListener( autocomplete, "place_changed", () =>
+			{
+				this.map_all_data1 = autocomplete.getPlace();
+				const place = autocomplete.getPlace();
+				let marker = new google.maps.Marker( {
+					position: place.geometry.location,
+					map     : this.map,
+					flat    : true
+				} );
+				// If the place has a geometry, then present it on a map.
+				if ( place.geometry.viewport ) {
+					this.map.fitBounds( place.geometry.viewport );
+				} else {
+					this.map.setCenter( place.geometry.location );
+					this.map.setZoom( 17 ); // Why 17? Because it looks good.
+				}
+				marker.setPosition( place.geometry.location );
+				marker.setVisible( true );
+				$( this.map_element ).trigger( 'shipping_map:change', this );
+			} );
+
+		},
+		/**
+		 * get Place by ID. Find more https://developers.google.com/maps/documentation/javascript/examples/place-details
+		 *
+		 * @param  Autocomplete autocomplete Google map autocomplete instance
+		 * @param  string       place_id     Google map place id.
+		 * @param  string       key          object key to set the results.
+		 * @return void
+		 */
+		getPlace ( autocomplete, place_id, key )
+		{
+
+			const service = new google.maps.places.PlacesService( this.map );
+			const request = {
+				placeId: place_id,
+				fields : [ "name", "formatted_address", "place_id", "geometry" ]
+			};
+			service.getDetails( request, ( place, status ) =>
+			{
+				this[ key ] = place;
+				google.maps.event.trigger( autocomplete, 'place_changed', place );
+			} );
+		},
+		distanceEventListner ( autocomplete1, autocomplete2 )
+		{
+			google.maps.event.addListener( autocomplete1, "place_changed", () =>
+			{
+
+				if ( ! this.map_all_data1.geometry ) {
+					this.map_all_data1 = autocomplete1.getPlace();
+				}
+				$( this.map_element ).trigger( 'shipping_map:change', this );
+			} );
+
+			google.maps.event.addListener( autocomplete2, "place_changed", () =>
+			{
+
+				if ( ! this.map_all_data2.geometry ) {
+					this.map_all_data2 = autocomplete2.getPlace();
+				}
+				this.distance_calculate();
+				$( this.map_element ).trigger( 'shipping_map:change', this );
+			} );
+		},
+		distance_calculate ()
+		{
+			if ( this.map_all_data1 == undefined && this.map_all_data2 === undefined ) {
+				return;
+			}
+			//setTimeout(() => {
+			if ( this.map_all_data1 == undefined && this.map_all_data2 === undefined ) {
+				return;
+			}
+
+			// Pickup Location lat, long
+			let pickup_location = {
+				lat : this.map_all_data1.geometry.location.lat(),
+				long: this.map_all_data1.geometry.location.lng()
+			};
+
+			// Delivery Location lat, long
+			let delivery_location = {
+				lat : this.map_all_data2.geometry.location.lat(),
+				long: this.map_all_data2.geometry.location.lng()
+			};
+			// Locations of landmarks
+			const pickup = {
+				lat: pickup_location.lat,
+				lng: pickup_location.long
+			};
+
+			const delivery = {
+				lat: delivery_location.lat,
+				lng: delivery_location.long
+			};
+
+			// The markers for The Dakota and The Frick Collection
+			let mk1 = new google.maps.Marker( {
+				position: pickup,
+				map     : this.map,
+				flat    : true
+			} );
+			let mk2 = new google.maps.Marker( {
+				position: delivery,
+				map     : this.map,
+				flat    : true
+			} );
+
+			// Draw a line showing the straight distance between the markers
+			/*let line = new google.maps.Polyline({
+			 path: [pickup, delivery],
+			 map: this.map
+			 });*/
+
+			// Calculate and display the distance between markers
+			let distance = this.haversine_distance( mk1, mk2 );
+			document.getElementById( "msg" ).innerHTML =
+				"Distance between markers: " + distance.toFixed( 2 ) + " mi.";
+
+			let directionsService = new google.maps.DirectionsService();
+			let directionsRenderer = new google.maps.DirectionsRenderer( {
+				draggable: this.options.direction_drag,
+				panel    : document.getElementById( "panel" )
+			} );
+			directionsRenderer.setMap( this.map ); // Existing map object displays directions
+			// Create route from existing points used for markers
+			const route = {
+				origin     : pickup,
+				destination: delivery,
+				travelMode : this.options.route_travel_mode,
+				avoidTolls : this.options.route_tolls
+			};
+
+			directionsService.route( route, ( response, status ) =>
+			{
+				// anonymous function to capture directions
+				if ( status !== "OK" ) {
+					window.alert( "Directions request failed due to " + status );
+					return;
+				} else {
+					directionsRenderer.setDirections( response ); // Add route to the map
+					var directionsData = response.routes[ 0 ].legs[ 0 ]; // Get data about the mapped route
+					if ( ! directionsData ) {
+						window.alert( "Directions request failed" );
+						return;
+					} else {
+
+						this.distance.distance_mi = ( directionsData.distance.value / 1000 ) * 1.609;
+						this.distance.distance_mi_text = directionsData.distance.text;
+
+						this.distance.distance_km = directionsData.distance.value / 1000;
+						this.distance.distance_km = parseFloat( this.distance.distance_km ).toFixed( 2 );
+						this.distance.distance_km_text = this.distance.distance_km + " km";
+
+						this.distance.time_reached = directionsData.duration.text;
+
+						document.getElementById( "msg" ).innerHTML += " Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").";
+
+						$( this.map_element ).trigger( 'shipping_map_direction:change', this );
+					}
+				}
+			} );
+			//}, 500);
+		},
+		get_current_location ()
+		{
+			navigator.geolocation.getCurrentPosition(
+				position =>
+				{
+					this.options.current_cordinate = { lat: position.coords.latitude, long: position.coords.longitude };
+					this.current = new google.maps.LatLng( position.coords.latitude, position.coords.longitude );
+					var mapOptions = {
+						zoom     : 16,
+						center   : this.current,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+					var map = new google.maps.Map( this.map_element, mapOptions );
+					var userMarker = new google.maps.Marker( {
+						position: this.current,
+						map     : map,
+						icon    : 'http://www.robotwoods.com/dev/misc/bluecircle.png'
+					} );
+
+					var geocoder = geocoder = new google.maps.Geocoder();
+					geocoder.geocode( { 'latLng': this.current }, ( results, status ) =>
+					{
+						if ( status == google.maps.GeocoderStatus.OK ) {
+							this.options.current_address = results[ 1 ].formatted_address;
+							$( this.map_element ).trigger( 'shipping_map_current_address:change', this.options );
+						}
+					} );
+				},
+				error =>
+				{
+					if ( error.message ) {
+						alert( error.message );
+					} else {
+						alert( 'navigator.geolocation failed, may not be supported' );
+					}
+				} );
+
+			return this;
+		},
+		haversine_distance ( mk1, mk2 )
+		{
+			let R = 3958.8; // Radius of the Earth in miles
+			let rlat1 = mk1.position.lat() * ( Math.PI / 180 ); // Convert degrees to radians
+			let rlat2 = mk2.position.lat() * ( Math.PI / 180 ); // Convert degrees to radians
+			let difflat = rlat2 - rlat1; // Radian difference (latitudes)
+			let difflon = ( mk2.position.lng() - mk1.position.lng() ) * ( Math.PI / 180 ); // Radian difference (longitudes)
+
+			let d =
+					2 *
+					R *
+					Math.asin(
+						Math.sqrt(
+							Math.sin( difflat / 2 ) * Math.sin( difflat / 2 ) +
+							Math.cos( rlat1 ) *
+							Math.cos( rlat2 ) *
+							Math.sin( difflon / 2 ) *
+							Math.sin( difflon / 2 )
+						)
+					);
+			return d;
+		},
+		url_data ( get_data )
+		{
+			if ( get_data == undefined ) {
+				return '';
+			}
+			get_data = new URL( location.href ).searchParams.get( get_data );
+			return get_data;
+		},
+		replace_string ( string, find, replace_data )
+		{
+			if ( string == undefined || find == undefined || replace_data == undefined ) {
+				return string;
+			}
+			return string.replace( find, replace_data );
+		}
+	};
+
+	$.fn.shipping_map = function ( options )
+	{
+		var maps = [];
+		this.each( function ()
+		{
+			maps.push( map.init( this, options ) );
+		} );
+		return this;
+	};
+	jQuery( document ).ready( function ( $ ) {} );
+} )( jQuery );
