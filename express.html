@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://demos.wpshippings.com/webinane-shipping-dashboard/#/dashboard -->
+<html><div id="in-page-channel-node-id" data-channel-name="in_page_channel_Lt7RXK"></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Webinane Shipping Dashboard – Demo WPShipment Plugin from Webinane</title>
+<meta name="robots" content="noindex, nofollow">
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="Demo WPShipment Plugin from Webinane » Feed" href="https://demos.wpshippings.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Demo WPShipment Plugin from Webinane » Comments Feed" href="https://demos.wpshippings.com/comments/feed/">
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/demos.wpshippings.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.2"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+	<style>
+	img.wp-smiley,
+	img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+	</style>
+	<link rel="stylesheet" id="element-ui-css" href="./express_files/element-ui.css" media="all">
+<link rel="stylesheet" id="wpcm-bootstrap-css" href="./express_files/bootstrap.min.css" media="all">
+<link rel="stylesheet" id="wpcommerce_main-css" href="./express_files/main.css" media="all">
+<link rel="stylesheet" id="wpcommerce_style-css" href="./express_files/style.css" media="all">
+<style id="wpcommerce_style-inline-css">
+body:not(.wp-admin) .wpcm-wrapper-general .donation-style-1 div.col-content,
+		body:not(.wp-admin) .wpcm-wrapper-general .donation-style-2 div.col-content {
+			background-image: url( https://demos.wpshippings.com/wp-content/plugins/webinane-commerce/assets/images/bg-style-1.jpg );
+		}body:not(.wp-admin) .wpcm-wrapper-postType .donation-style-1 div.col-content,
+		body:not(.wp-admin) .wpcm-wrapper-postType .donation-style-2 div.el-dialog__header {
+			background-image: url( https://demos.wpshippings.com/wp-content/plugins/webinane-commerce/assets/images/bg-style-1.jpg );
+		}
+</style>
+<link rel="stylesheet" id="wpcommerce_responsive-css" href="./express_files/responsive.css" media="all">
+<script id="jquery-core-js-extra">
+var wpcm_data = {"ajaxurl":"https:\/\/demos.wpshippings.com\/wp-admin\/admin-ajax.php","nonce":"626e1bdf68","ajax_action":"_wpcm_ajax"};
+var webinane_shipping_set = {"strings":{"pass_req":"Password is required","pass":"Password","pass_length":"Password length must be minimum 8 characters","bio":"Bio","pass_change":"Change Password","pass_new":"New Password","pass_current":"Current Password","pass_rep":"Repeat Password","pass_new_req":"New Password is required","pass_currt_req":"Current password is required","pass_confirm_req":"Repeat Password is required","pass_confirm":"Confirm Password","pass_confirm_length":"Confirm Password length must be minimum 8 characters","pass_new_match":"New and repeat password must be matched","pass_new_repeat_not_match":"New and repeat password don&#039;t match","pass_new_match_to_currt":"New password should not match to current password","validate_miss_field":"Some fields are missing of validation","login":"Login","logout":"Logout","login_acc":"Login Account","user_req":"Username or Email is requried","user":"Username","user_email":"Username or Email","register":"Register","reg_acc":"Register Account?","user_name_req":"Username is required","email":"Email","email_req":"Email is required","invalid_email":"Invalid email is entered","info_personal":"Personal Information","f_name":"First Name","l_name":"Last Name","sav_prof":"Save Profile","error":"Error","succe":"Success","dashboard":"Dashboard","global_shipp_price":"Global Shipping Prices","book":"Bookings","setts":"Settings","address_book":"Address Book","download_book":"Download Book","map_address":"Map Address","name":"Name","complete_address":"Complete Address","city":"City","state":"State","country":"Country","phone":"Phone","phone_2":"Phone 2","cancel":"Cancel","save":"Save","track":"Tracking","pay_method":"Payment Methods","profile":"Profile","welcome":"Welcome","edit_zone":"Edit Zone","zone_name":"Zone Name","region":"Region","regions":"Region(s)","save_changes":"Save Changes","add_new_zone":"Add new Zone","shipping_zones":"Shipping Zones","shipping_zone_area_description":"A shipping zone is a geographic region where a certain set of shipping methods are offered","weight":"Weigth","price":"Price","shipping_method":"Shipping Method","shipping_methods":"Shipping Methods","ltr":"Litter","kg":"Killo Gram","delete":"Delete","edit":"Edit","add_new_method":"Add New Method","unit":"Unit","confirm_remove_item":"This will remove the item permanently. Continue?","warning":"Warning","ok":"OK","zip":"ZIP","company":"Company","new_pkg":"Start New Booking","google_address":"Address is not found. Please try another.","success":"Success","validation_error":"There are some validation Errors","source_dest_add":"Please select source and destincation addresses from google field","select_gateway":"Please select payment method to place the order"},"nonce":"3f1168eced","root":"https:\/\/demos.wpshippings.com\/","google_key":{"wbsh_pkg_type":["Gift","Food","Document"],"base_country":{"country":"USA","state":"GA"},"base_city":"New York ","address_line_1":"Near Civil defence","address_line_2":"","zip_code":"60000","base_currency":"SGD","currency_position":"left","thousand_saparator":",","decimal_saparator":",","number_decimals":"0","general_setting_color_scheme":null,"gateways_test_mode":true,"active_gateways":["stripe","offline","paypal","paypal_pro"],"default_gateway":"offline","gateways_list":null,"offline_payment_title":null,"offline_payment_description":null,"offline_payment_instruction":null,"paypal_title":null,"paypal_description":null,"paypal_email":"webinaneff@gmail.com","paypal_api_username":"webinaneff_api1.gmail.com","paypal_api_password":"PTRHG9VDPFKFSLBE","paypal_api_signature":"AFcWxV21C7fd0v3bYYYRCpSSRl31AS0h.TMhuVqnBknr2gp9SxwLQjC-","my_account_page":"8","success_page":"9","email_template_from_name":"Demo WPShipment Plugin from Webinane","email_template_from_email":"sugotech@gmail.com","customer_email_header_logo":null,"email_template_footer_text":"{{site_name}} &mdash; Built with {{LifelineDonation}}","customer_email_footer_logo":null,"email_template_base_color":"#2f88e4","email_template_bg_color":"#f7f7f7","email_template_body_bg_color":"#ffffff","email_template_body_text_color":"#3c3c3c","customer_email_subject":"{{customer_name}} Hi this test email.","customer_email_greeting_text":"Thanks for your Donation!","customer_email_body":"{{customer_name}} Thanks for donation for the cause you donated and we are very thankful for your kind contribution in {{site_name}} ","customer_email_show_customer_detail":true,"customer_email_show_item_info":true,"admin_email_subject":"{{customer_name}} Hi this test email.","admin_email_greeting_text":"Thanks for your Donation!","admin_email_body":"{{customer_name}} Thanks for donation for the cause you donated and we are very thankful for your kind contribution in {{site_name}} ","logo":8019,"wbsh_company_name":"GOBEXPRESS LTD.","wbsh_company_address":"SUKUTA HIGHWAY SANCHABA SULAYE JOBE JUNCTION","wbsh_company_email":"info@gobexpress.com","wbsh_company_contact":"+(220) 7062230 \/ 7362459 \/ +6 148392758","wbsh_calculator":"17","wbsh_logout_redirect":"11","wbsh_terms_condition":"5664","wbsh_rate_type":"flat","wbsh_scale_type":"kg","wbsh_calc_type":"combo","wbsh_price":50,"wbsh_temp_price":30,"wbsh_express_price":42,"wbsh_map_api":"AIzaSyCiO-eV_iRkCc8G-KKTpORmtH38vXPEXJE","wbsh_base_country":{"country":["USA"],"state":""},"wbsh_map_base_lat":"33.247875","wbsh_map_base_long":"-83.441162","wbsh_restricted_items":null,"wbsh_email_new_hello":"Hi {{user_name}}","wbsh_email_new_desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in sapien vitae enim viverra luctus ut ut enim.","wbsh_email_new_track_id":"19","wbsh_email_new_footer":"Copyrights Reserved By Webinane"},"countries":["USA"],"symbol":"$"};
+var webinane_shipping = {"ajaxurl":"https:\/\/demos.wpshippings.com\/wp-admin\/admin-ajax.php","nonce":"626e1bdf68","root":"https:\/\/demos.wpshippings.com\/","form_wizard":[],"google_key":"AIzaSyCiO-eV_iRkCc8G-KKTpORmtH38vXPEXJE","calc_page_link":"https:\/\/demos.wpshippings.com\/calculator\/"};
+var wbsh_calcu = {"currency":"SGD","symbol":"$","temp_price":"30","express_price":"42","calculation_type":"combo","rate_type":"flat","rate":"50","map_data":{"country":["USA"],"field_1":"#address1","field_2":"#address2","distance_map":true,"center":{"lat":33.247875,"lng":-83.441162},"map_div":"#map"},"gateways":{"offline":{"heading":null,"icon":"https:\/\/demos.wpshippings.com\/wp-content\/plugins\/webinane-commerce\/assets\/images\/offline-icon.png","id":"offline","recurring":false,"label":"Offline Payment","name":"Offline Payment","description":null,"is_refundable":false},"paypal":{"heading":null,"icon":"https:\/\/demos.wpshippings.com\/wp-content\/plugins\/webinane-commerce\/assets\/images\/paypal-icon.png","id":"paypal","recurring":true,"label":"PayPal Standard","name":"PayPal Standard","description":null,"is_refundable":true}},"user":{"is_login":true}};
+</script>
+<script src="./express_files/jquery.min.js.download" id="jquery-core-js"></script>
+<script src="./express_files/jquery-migrate.min.js.download" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="https://demos.wpshippings.com/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://demos.wpshippings.com/wp-json/wp/v2/pages/11"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://demos.wpshippings.com/xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.7.2">
+<link rel="canonical" href="https://demos.wpshippings.com/webinane-shipping-dashboard/">
+<link rel="shortlink" href="https://demos.wpshippings.com/?p=11">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://demos.wpshippings.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdemos.wpshippings.com%2Fwebinane-shipping-dashboard%2F">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://demos.wpshippings.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdemos.wpshippings.com%2Fwebinane-shipping-dashboard%2F&amp;format=xml">
+<meta name="generator" content="Redux 4.5.0"><meta name="generator" content="Elementor 3.29.2; features: additional_custom_breakpoints, e_local_google_fonts; settings: css_print_method-external, google_font-enabled, font_display-swap">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://demos.wpshippings.com/wp-content/uploads/2023/05/unload-new-logo-150x76.png" sizes="32x32">
+<link rel="icon" href="https://demos.wpshippings.com/wp-content/uploads/2023/05/unload-new-logo.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://demos.wpshippings.com/wp-content/uploads/2023/05/unload-new-logo.png">
+<meta name="msapplication-TileImage" content="https://demos.wpshippings.com/wp-content/uploads/2023/05/unload-new-logo.png">
+		<style id="wp-custom-css">
+			.avatar-uploader-icon {
+	height: 150px;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.contact-us-form input {
+	height: 0 !important;
+}
+.contact-us-form textarea {
+	height: 110px !important;
+}
+.contact-us-form textarea,
+.contact-us-form input {
+    border: none !important;
+    box-shadow: none !important;
+	padding: 20px;
+}
+.contact-us-form label {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #e1e1e1;
+	line-height: 28px !important;
+	font-size: 14px !important;
+}		</style>
+		<style>
+.wpcm-wrapper .wpcm-radiomark {
+	border-color: #333;
+}
+.wpcm-wrapper .order-btn {
+	background-color: #fff;
+	margin-top: 20px;
+}
+</style><style>.shipping-zones .el-table, .shipping-zones .el-card {
+  overflow: visible;
+}
+.shipping-zones .el-table__body-wrapper.is-scrolling-none {
+  position: static;
+}
+.shipping-zones .el-table__header-wrapper:not(.is-scrolling-none) {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.el-tag {
+  font-family: "Poppins";
+}</style><style>
+.pac-container {
+    z-index: 20005 !important;
+}
+</style><style>
+.avatar-uploader .el-upload {
+    border-radius: 50%;
+    background-color: #7dd9e7;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+    border-color: #409eff;
+}
+.avatar-uploader-icon {
+    font-size: 38px;
+    color: #fff;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+.avatar {
+    width: 100%;
+    height: 178px;
+    display: block;
+}
+.avatar-uploader .el-upload__tip {
+    text-align: center;
+    color: #313131;
+}
+</style><style>.wpcm-settings-editor {
+  margin-top: 20px;
+}</style><style>.wpcm-dashboard-wrapper {
+  box-shadow: 0 0 57px rgba(0, 0, 0, 0.09);
+}
+.wpcm-dashboard-wrapper .el-radio {
+  margin-right: 10px;
+}
+.wpcm-dashboard-wrapper .el-switch {
+  position: relative;
+  margin-bottom: 10px;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__core {
+  height: 40px;
+  width: 95px !important;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.08);
+  border-radius: 60px;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__core::after {
+  height: 36px;
+  width: 36px;
+  box-shadow: 3px 4px 15px 0px rgba(0, 0, 0, 0.25);
+}
+.wpcm-dashboard-wrapper .el-switch.is-checked .el-switch__core {
+  background-color: #2f88e4;
+  background-image: linear-gradient(#2f88e4, #2874df);
+  border-color: #2f88e4;
+}
+.wpcm-dashboard-wrapper .el-switch.is-checked .el-switch__core::after {
+  margin-left: -37px;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__label {
+  font-size: 13px;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  margin-right: 0;
+  z-index: 1;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__label.el-switch__label--left {
+  margin-left: -4px;
+  opacity: 0;
+  visibility: hidden;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__label.el-switch__label--left.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__label.el-switch__label--right {
+  margin-left: -25px;
+  opacity: 0;
+  visibility: hidden;
+}
+.wpcm-dashboard-wrapper .el-switch .el-switch__label.el-switch__label--right.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.wpcm-dashboard-wrapper .tab-heading {
+  font-size: 40px;
+  color: #000000;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+.wpcm-dashboard-wrapper .tab-heading:before {
+  content: "";
+  height: 2px;
+  width: 40px;
+  background-color: #2b7de1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.wpcm-dashboard-wrapper .save-settings {
+  text-align: center;
+  background-color: #fbfbfb;
+  padding: 25px;
+  position: sticky;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 30;
+}
+.wpcm-dashboard-wrapper .save-settings .el-button {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  padding: 20px 40px;
+  border-radius: 2px;
+  background-color: #2f88e4;
+  background-image: linear-gradient(#2f88e4, #2874df);
+}
+.wpcm-dashboard-wrapper .enable-settings {
+  padding-bottom: 30px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #ececec;
+  margin-top: 30px;
+}
+.wpcm-dashboard-wrapper .enable-settings .enable-label {
+  font-size: 16px;
+  color: #666666;
+  margin-right: 70px;
+}
+.wpcm-dashboard-wrapper .enable-settings .enable-desc {
+  font-size: 14px;
+  color: #999999;
+  font-style: italic;
+  margin-left: 15px;
+}
+.wpcm-dashboard-wrapper .settings-tab-area {
+  position: relative;
+}
+.wpcm-dashboard-wrapper .settings-tab-area .import-export-btns {
+  position: absolute;
+  right: 22px;
+  top: 36px;
+}
+.wpcm-dashboard-wrapper .settings-tab-area .import-export-btns > .el-button {
+  background-color: #354052;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  padding: 10px 12px;
+}
+.wpcm-dashboard-wrapper .settings-tab-area .import-export-btns > .el-button:hover {
+  background-color: #4385f5;
+}
+.wpcm-dashboard-wrapper .settings-tab-area .import-export-btns > .el-button + .el-button {
+  margin-left: 5px;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item {
+  margin-bottom: 3rem;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__label {
+  color: #666666;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+  line-height: 30px;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-input input {
+  height: 58px;
+  border-radius: 2px;
+  border: 2px solid #e1e2e6;
+  color: #999999;
+  font-size: 14px;
+  padding: 12px 15px;
+  background-color: #fff;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-date-editor input {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__content {
+  line-height: normal;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__content .el-button.el-popover__reference {
+  background-color: #c0c0c0;
+  border: none;
+  color: #fff;
+  padding: 0;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__content .el-select {
+  width: 100%;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__content .el-select .el-input__suffix {
+  background-color: #f8f8f8;
+  height: 34px;
+  display: block;
+  width: 32px;
+  border-radius: 5px;
+  right: 15px;
+  border: 1px solid #ebebeb;
+  top: 50%;
+  margin-top: -17px;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__content .el-select .el-input__suffix .el-select__caret {
+  color: #6a6a6a;
+  line-height: 30px;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-form-item__content .wpcm-option-row {
+  padding: 0;
+  border: none;
+}
+.wpcm-dashboard-wrapper .el-form .el-form-item .el-slider .el-slider__runway {
+  margin: 32px 0 16px;
+}
+.wpcm-dashboard-wrapper .main-tabs-list {
+  box-shadow: none;
+  border: none;
+}
+.wpcm-dashboard-wrapper .main-tabs-list > .el-tabs__header .el-tabs__nav-wrap {
+  background-color: #011025;
+}
+.wpcm-dashboard-wrapper .main-tabs-list > .el-tabs__header .el-tabs__item {
+  height: auto;
+  border: none;
+  border-right: 1px solid #2b3648;
+  padding: 28px 34px !important;
+  text-align: center;
+  line-height: normal;
+}
+.wpcm-dashboard-wrapper .main-tabs-list > .el-tabs__header .el-tabs__item.is-active {
+  color: #fff;
+  background-color: #4385f5;
+  border-color: #4385f5;
+}
+.wpcm-dashboard-wrapper .main-tabs-list > .el-tabs__header .el-tabs__item.is-active i {
+  color: #fff;
+}
+.wpcm-dashboard-wrapper .main-tabs-list > .el-tabs__header .el-tabs__item span {
+  font-size: 14px;
+  color: #fff;
+}
+.wpcm-dashboard-wrapper .main-tabs-list > .el-tabs__header .el-tabs__item span i {
+  display: block;
+  color: #8494ad;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content {
+  padding: 0;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .el-tabs--border-card {
+  border: none;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .el-tabs__content {
+  padding: 60px 22%;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content {
+  padding: 60px 22%;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__content {
+  padding: 0;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav-wrap::after {
+  display: none;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav .el-checkbox {
+  color: #333;
+  font-weight: normal;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav .el-checkbox .el-checkbox__label {
+  font-size: 15px;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav .el-checkbox .el-checkbox__input .el-checkbox__inner {
+  border: 1px solid #d8d8d8;
+  background-color: #f9f9f9;
+  height: 20px;
+  width: 20px;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav .el-checkbox .el-checkbox__input .el-checkbox__inner::after {
+  height: 10px;
+  width: 6px;
+  left: 6px;
+  top: 2px;
+  border: 2px solid #fff;
+  border-left: 0;
+  border-top: 0;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #409eff;
+  border-color: #409eff;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__nav .el-tabs__active-bar {
+  display: none;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content div .tab-heading {
+  font-size: 28px;
+}
+.wpcm-dashboard-wrapper .main-tabs-list .el-tabs__content .settings-tab-content .el-tabs__content {
+  padding: 50px 0 0 !important;
+}
+.wpcm-dashboard-wrapper .child-tabs-list > .el-tabs__header .el-tabs__nav-wrap {
+  background-color: #f4f4f4;
+}
+.wpcm-dashboard-wrapper .child-tabs-list > .el-tabs__header .el-tabs__item {
+  height: auto;
+  border: none;
+  padding: 14px 34px !important;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  position: relative;
+}
+.wpcm-dashboard-wrapper .child-tabs-list > .el-tabs__header .el-tabs__item + .el-tabs__item:after {
+  content: "";
+  width: 1px;
+  height: 13px;
+  background-color: #bfbfbf;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -6px;
+}
+.wpcm-dashboard-wrapper .child-tabs-list > .el-tabs__header .el-tabs__item:hover {
+  color: #2b7de1 !important;
+}
+.wpcm-dashboard-wrapper .child-tabs-list > .el-tabs__header .el-tabs__item.is-active {
+  background-color: #f4f4f4;
+  color: #2b7de1;
+}
+.wpcm-dashboard-wrapper .import-modal .el-dialog__header {
+  background-color: #eaf1f6;
+  padding: 24px 35px;
+}
+.wpcm-dashboard-wrapper .import-modal .el-dialog__header span {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+}
+.wpcm-dashboard-wrapper .import-modal .el-dialog__header .el-dialog__headerbtn {
+  height: 34px;
+  width: 34px;
+  line-height: 38px;
+  border-radius: 50%;
+  background-color: #fff;
+  text-align: center;
+}
+.wpcm-dashboard-wrapper .import-modal .el-dialog__header .el-dialog__headerbtn .el-dialog__close {
+  color: #000;
+  font-size: 20px;
+}
+.wpcm-dashboard-wrapper .import-modal .el-dialog__body {
+  padding: 30px 35px;
+}
+.wpcm-dashboard-wrapper .import-modal .import-opt {
+  margin-bottom: 30px;
+}
+.wpcm-dashboard-wrapper .import-modal .chose-import-file > span {
+  font-size: 14px;
+  color: #000;
+  display: block;
+  padding-bottom: 22px;
+}
+.wpcm-dashboard-wrapper .import-modal .chose-import-file .upload-demo .el-button {
+  border-radius: 4px;
+  border: 1px solid #d8d8d8;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.11);
+  background-color: #fafafa;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  padding: 14px 24px;
+}
+.wpcm-dashboard-wrapper .import-modal .chose-import-file .upload-demo .el-upload__tip {
+  font-size: 13px;
+  color: #999999;
+  margin-top: 12px;
+}
+.wpcm-dashboard-wrapper .import-modal .el-input input {
+  height: 58px;
+  border-radius: 2px;
+  border: 2px solid #e1e2e6;
+  color: #999999;
+  font-size: 14px;
+  padding: 12px 15px;
+  background-color: #fff;
+}
+.el-tooltip__popper.is-dark {
+  border-radius: 30px;
+  background-color: #ffffff;
+  font-size: 12px;
+  color: #000000;
+  padding: 4px 15px;
+}
+.el-tooltip__popper.is-dark .popper__arrow {
+  border-top-color: #ffffff;
+}
+.el-tooltip__popper.is-dark .popper__arrow:after {
+  border-top-color: #ffffff;
+}</style><script src="./express_files/wp-emoji-release.min.js.download" defer=""></script><style>@keyframes slide-in-one-tap {
+  from {
+    transform: translateY(80px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.trust-hide-gracefully {
+  opacity: 0;
+}
+
+.trust-wallet-one-tap .hidden {
+    display: none;
+  }
+
+.trust-wallet-one-tap .semibold {
+    font-weight: 500;
+  }
+
+.trust-wallet-one-tap .binance-plex {
+    font-family: 'Binance';
+  }
+
+.trust-wallet-one-tap .rounded-full {
+    border-radius: 50%;
+  }
+
+.trust-wallet-one-tap .flex {
+    display: flex;
+  }
+
+.trust-wallet-one-tap .flex-col {
+    flex-direction: column;
+  }
+
+.trust-wallet-one-tap .items-center {
+    align-items: center;
+  }
+
+.trust-wallet-one-tap .space-between {
+    justify-content: space-between;
+  }
+
+.trust-wallet-one-tap .justify-center {
+    justify-content: center;
+  }
+
+.trust-wallet-one-tap .w-full {
+    width: 100%;
+  }
+
+.trust-wallet-one-tap .box {
+    transition: all 0.5s cubic-bezier(0, 0, 0, 1.43);
+    animation: slide-in-one-tap 0.5s cubic-bezier(0, 0, 0, 1.43);
+    width: 384px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 1020;
+  }
+
+.trust-wallet-one-tap .header {
+    gap: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 10px 18px;
+  }
+
+.trust-wallet-one-tap .header .left-items {
+      gap: 15px;
+    }
+
+.trust-wallet-one-tap .header .title {
+      color: #1e2329;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+.trust-wallet-one-tap .header .subtitle {
+      color: #474d57;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+.trust-wallet-one-tap .header .close {
+      color: #1e2329;
+      cursor: pointer;
+    }
+
+.trust-wallet-one-tap .body {
+    padding: 9px 18px;
+    gap: 10px;
+  }
+
+.trust-wallet-one-tap .body .right-items {
+      gap: 10px;
+      width: 100%;
+    }
+
+.trust-wallet-one-tap .body .right-items .wallet-title {
+        color: #1e2329;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+      }
+
+.trust-wallet-one-tap .body .right-items .wallet-subtitle {
+        color: #474d57;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+.trust-wallet-one-tap .connect-indicator {
+    gap: 15px;
+    padding: 8px 0;
+  }
+
+.trust-wallet-one-tap .connect-indicator .flow-icon {
+      color: #474d57;
+    }
+
+.trust-wallet-one-tap .loading-color {
+    color: #fff;
+  }
+
+.trust-wallet-one-tap .button {
+    border-radius: 50px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    background-color: rgb(5, 0, 255);
+    border-color: rgb(229, 231, 235);
+    cursor: pointer;
+    text-align: center;
+    height: 45px;
+  }
+
+.trust-wallet-one-tap .button .button-text {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+.trust-wallet-one-tap .footer {
+    margin: 20px 30px;
+  }
+
+.trust-wallet-one-tap .check-icon {
+    color: #fff;
+  }
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Regular.otf) format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Medium.otf) format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-SemiBold.otf) format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL2FwcC9zcmMvb25lVGFwL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFO0lBQ0UsMkJBQTJCO0VBQzdCO0VBQ0E7SUFDRSwwQkFBMEI7RUFDNUI7QUFDRjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFHRTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLGdCQUFnQjtFQUNsQjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLGtCQUFrQjtFQUNwQjs7QUFFQTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7QUFFQTtJQUNFLDhCQUE4QjtFQUNoQzs7QUFFQTtJQUNFLHVCQUF1QjtFQUN6Qjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFFQTtJQUNFLGdEQUFnRDtJQUNoRCw0REFBNEQ7SUFDNUQsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsK0NBQStDO0lBQy9DLGVBQWU7SUFDZixXQUFXO0lBQ1gsWUFBWTtJQUNaLGFBQWE7RUFDZjs7QUFFQTtJQUNFLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsa0JBQWtCO0VBdUJwQjs7QUFyQkU7TUFDRSxTQUFTO0lBQ1g7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixpQkFBaUI7SUFDbkI7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGlCQUFpQjtJQUNuQjs7QUFFQTtNQUNFLGNBQWM7TUFDZCxlQUFlO0lBQ2pCOztBQUdGO0lBQ0UsaUJBQWlCO0lBQ2pCLFNBQVM7RUFtQlg7O0FBakJFO01BQ0UsU0FBUztNQUNULFdBQVc7SUFjYjs7QUFaRTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsZ0JBQWdCO1FBQ2hCLGlCQUFpQjtNQUNuQjs7QUFFQTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsaUJBQWlCO01BQ25COztBQUlKO0lBQ0UsU0FBUztJQUNULGNBQWM7RUFLaEI7O0FBSEU7TUFDRSxjQUFjO0lBQ2hCOztBQUdGO0lBQ0UsV0FBVztFQUNiOztBQUVBO0lBQ0UsbUJBQW1CO0lBQ25CLDhCQUE4QjtJQUM5QixtQkFBbUI7SUFDbkIsZ0NBQWdDO0lBQ2hDLGdDQUFnQztJQUNoQyxlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLFlBQVk7RUFRZDs7QUFORTtNQUNFLFdBQVc7TUFDWCxlQUFlO01BQ2YsZ0JBQWdCO01BQ2hCLGlCQUFpQjtJQUNuQjs7QUFHRjtJQUNFLGlCQUFpQjtFQUNuQjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFHRjtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMEU7RUFDMUUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBeUU7RUFDekUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMkU7RUFDM0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQiIsInNvdXJjZXNDb250ZW50IjpbIkBrZXlmcmFtZXMgc2xpZGUtaW4tb25lLXRhcCB7XG4gIGZyb20ge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSg4MHB4KTtcbiAgfVxuICB0byB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDBweCk7XG4gIH1cbn1cblxuLnRydXN0LWhpZGUtZ3JhY2VmdWxseSB7XG4gIG9wYWNpdHk6IDA7XG59XG5cbi50cnVzdC13YWxsZXQtb25lLXRhcCB7XG4gIC5oaWRkZW4ge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cblxuICAuc2VtaWJvbGQge1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIH1cblxuICAuYmluYW5jZS1wbGV4IHtcbiAgICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICB9XG5cbiAgLnJvdW5kZWQtZnVsbCB7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICB9XG5cbiAgLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAuZmxleC1jb2wge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIH1cblxuICAuaXRlbXMtY2VudGVyIHtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB9XG5cbiAgLnNwYWNlLWJldHdlZW4ge1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgfVxuXG4gIC5qdXN0aWZ5LWNlbnRlciB7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIH1cblxuICAudy1mdWxsIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgfVxuXG4gIC5ib3gge1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjVzIGN1YmljLWJlemllcigwLCAwLCAwLCAxLjQzKTtcbiAgICBhbmltYXRpb246IHNsaWRlLWluLW9uZS10YXAgMC41cyBjdWJpYy1iZXppZXIoMCwgMCwgMCwgMS40Myk7XG4gICAgd2lkdGg6IDM4NHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBib3gtc2hhZG93OiAwcHggMnB4IDRweCAwcHggcmdiYSgwLCAwLCAwLCAwLjI1KTtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgcmlnaHQ6IDMwcHg7XG4gICAgYm90dG9tOiAzMHB4O1xuICAgIHotaW5kZXg6IDEwMjA7XG4gIH1cblxuICAuaGVhZGVyIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlNmU2ZTY7XG4gICAgcGFkZGluZzogMTBweCAxOHB4O1xuXG4gICAgLmxlZnQtaXRlbXMge1xuICAgICAgZ2FwOiAxNXB4O1xuICAgIH1cblxuICAgIC50aXRsZSB7XG4gICAgICBjb2xvcjogIzFlMjMyOTtcbiAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICBsaW5lLWhlaWdodDogMjhweDtcbiAgICB9XG5cbiAgICAuc3VidGl0bGUge1xuICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICB9XG5cbiAgICAuY2xvc2Uge1xuICAgICAgY29sb3I6ICMxZTIzMjk7XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgfVxuICB9XG5cbiAgLmJvZHkge1xuICAgIHBhZGRpbmc6IDlweCAxOHB4O1xuICAgIGdhcDogMTBweDtcblxuICAgIC5yaWdodC1pdGVtcyB7XG4gICAgICBnYXA6IDEwcHg7XG4gICAgICB3aWR0aDogMTAwJTtcblxuICAgICAgLndhbGxldC10aXRsZSB7XG4gICAgICAgIGNvbG9yOiAjMWUyMzI5O1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xuICAgICAgfVxuXG4gICAgICAud2FsbGV0LXN1YnRpdGxlIHtcbiAgICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgLmNvbm5lY3QtaW5kaWNhdG9yIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgcGFkZGluZzogOHB4IDA7XG5cbiAgICAuZmxvdy1pY29uIHtcbiAgICAgIGNvbG9yOiAjNDc0ZDU3O1xuICAgIH1cbiAgfVxuXG4gIC5sb2FkaW5nLWNvbG9yIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgfVxuXG4gIC5idXR0b24ge1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgb3V0bGluZTogMnB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIG91dGxpbmUtb2Zmc2V0OiAycHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDUsIDAsIDI1NSk7XG4gICAgYm9yZGVyLWNvbG9yOiByZ2IoMjI5LCAyMzEsIDIzNSk7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBoZWlnaHQ6IDQ1cHg7XG5cbiAgICAuYnV0dG9uLXRleHQge1xuICAgICAgY29sb3I6ICNmZmY7XG4gICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgfVxuICB9XG5cbiAgLmZvb3RlciB7XG4gICAgbWFyZ2luOiAyMHB4IDMwcHg7XG4gIH1cblxuICAuY2hlY2staWNvbiB7XG4gICAgY29sb3I6ICNmZmY7XG4gIH1cbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnQmluYW5jZSc7XG4gIHNyYzogdXJsKCcuL2ZvbnRzL2JpbmFuY2VQbGV4L0JpbmFuY2VQbGV4LVJlZ3VsYXIub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNDAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1NZWRpdW0ub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNTAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1TZW1pQm9sZC5vdGYnKSBmb3JtYXQoJ29wZW50eXBlJyk7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style><script type="text/javascript" charset="UTF-8" src="./express_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./express_files/util.js.download"></script></head>
+<body>
+<div id="webinane-shipping-dashboard" class="wpcm-wrapper webinane-shipping-dashboard">
+  <div class="wpcm-container-fluid p-0">
+  <div class="wpcm-row">
+  <div class="wpcm-col-lg-3 wpcm-col-md-12 sidebar-nav">
+  <div class="mobile-show-nav"><a href="#" class="open-panel"><i class="el-icon-setting"></i></a> 
+  <div class="user-info-area">
+  <div class="user-img"><img src="./express_files/cba1f2d695a5ca39ee6f343297a761a4.jpg"></div> 
+<div class="user-info"><span>Welcome</span> <h5>user </h5> 
+  <button type="button" class="el-button main-btn el-button--primary"><!----><!----><span>Logout</span></button></div></div> 
+<ul role="menubar" class="el-menu-vertical-demo el-menu" style="background-color: rgb(23, 33, 84);">
+  <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px; color: rgb(255, 255, 255); background-color: rgb(23, 33, 84);"> <a href="#"> 
+  <span> <i class="el-icon-odometer"></i> <span>Dashboard</span></span></a></li> 
+  <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px; color: rgb(255, 255, 255); background-color: rgb(23, 33, 84);"> <a href="bookings.html"></a> <span><i class="el-icon-s-claim"></i> 
+  <span> <a href="bookings.html" style="color: white;"> Bookings</a></span></span></li> 
+  <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px; color: rgb(255, 255, 255); background-color: rgb(23, 33, 84);">
+  <span><i class="el-icon-location-information"></i> <span>Tracking</span></span></li> 
+  <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px; color: rgb(255, 255, 255); background-color: rgb(23, 33, 84);"><span><i class="el-icon-collection"></i> <span>Address Book</span></span></li> 
+  <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px; color: rgb(255, 255, 255); background-color: rgb(23, 33, 84);"><span><i class="el-icon-money"></i> 
+  <span> <a href="test3.html" style="color: white;"> Payment Methods</a></span></span></li> <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px; color: rgb(255, 255, 255); background-color: rgb(23, 33, 84);"><span><i class="el-icon-user"></i> <span>Profile</span></span></li> <!----> <!----></ul><div class="el-loading-mask" style="display: none;"><div class="el-loading-spinner"><svg viewBox="25 25 50 50" class="circular"><circle cx="50" cy="50" r="20" fill="none" class="path"></circle></svg><!----></div></div></div></div> <div class="wpcm-col-lg-9 wpcm-col-md-12 dashboard-content"><div class="dashboard-area"><div class="title-area"><div class="el-row"><div class="el-col el-col-24 el-col-sm-12"><h3>Welcome to <strong>Express Delivery System</strong></h3></div></div></div> 
+<div class="dashboard-landing"><div class="el-row" style="margin-left: -15px; margin-right: -15px;"><div class="el-col el-col-24 el-col-sm-12 el-col-lg-8" style="padding-left: 15px; padding-right: 15px;"><div class="custom-card"><span class="card-icon">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m24 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m17.5.75c0-.412-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.338-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path></svg></span> <h2><i>$</i> 0</h2> <span>Pending Orders</span></div></div>
+<div class="el-col el-col-24 el-col-sm-12 el-col-lg-8" style="padding-left: 15px; padding-right: 15px;"><div class="custom-card"><span class="card-icon">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m24 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m17.5.75c0-.412-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.338-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path></svg></span> 
+  <h2><i>$</i> 2000</h2>
+   <span>Total Payment</span>
+  </div></div><div class="el-col el-col-24 el-col-sm-12 el-col-lg-8" style="padding-left: 15px; padding-right: 15px;"><div class="custom-card"><span class="card-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m24 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m17.5.75c0-.412-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.338-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path></svg></span> <h2><i>$</i> 50</h2> <span>Complete Orders</span></div></div><div class="el-col el-col-24 el-col-sm-12 el-col-lg-8" style="padding-left: 15px; padding-right: 15px;"><div class="custom-card"><span class="card-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m24 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m17.5.75c0-.412-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.338-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path></svg></span> <h2><i>$</i> 0</h2> <span>Monthly Income</span></div></div><div class="el-col el-col-24 el-col-sm-12 el-col-lg-8" style="padding-left: 15px; padding-right: 15px;"><div class="custom-card"><span class="card-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m24 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> <path d="m17.5.75c0-.412-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.338-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path></svg></span> <h2><i>$</i> 0</h2> <span>3 Month Income</span></div></div>
+<div class="el-col el-col-24 el-col-sm-12 el-col-lg-8" style="padding-left: 15px; padding-right: 15px;">
+  <div class="custom-card">
+  <span class="card-icon">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="m11 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> 
+  <path d="m24 13.75c0-.413-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.337-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path> 
+  <path d="m17.5.75c0-.412-.338-.75-.75-.75h-3.75v3c0 .552-.448 1-1 1s-1-.448-1-1v-3h-3.75c-.413 0-.75.338-.75.75v9.5c0 .413.337.75.75.75h9.5c.412 0 .75-.337.75-.75z"></path></svg></span> 
+  <h2><i>$</i> 0</h2> 
+  <span>Yearly Income</span></div></div></div> 
+<div class="el-row">
+  <div class="el-col el-col-24 el-col-md-18 el-col-lg-12">
+  <div class="company-card mt-5">
+  <ul class="list-unstyled p-0 m-0">
+  <li><strong>Company </strong> <span> </span></li> 
+  <li><strong>Full Name </strong> <span>user  </span></li> 
+  <li><strong>Phone </strong> <span> </span></li> 
+  <li><strong>Email </strong> <span>user@gmail.com </span></li> 
+  <li><strong>Address </strong> <span> </span></li></ul>
+</div></div></div></div></div></div></div></div></div>
+
+			<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<script type="text/template" id="tmpl-elementor-templates-modal__header">
+	<div class="elementor-templates-modal__header__logo-area"></div>
+	<div class="elementor-templates-modal__header__menu-area"></div>
+	<div class="elementor-templates-modal__header__items-area">
+		<# if ( closeType ) { #>
+			<div class="elementor-templates-modal__header__close elementor-templates-modal__header__close--{{{ closeType }}} elementor-templates-modal__header__item">
+				<# if ( 'skip' === closeType ) { #>
+				<span>Skip</span>
+				<# } #>
+				<i class="eicon-close"
+					aria-hidden="true"
+					title="{{{ $e.components?.get( 'document/elements' )?.utils?.getTitleForLibraryClose() }}}"></i>
+				<span class="elementor-screen-only">{{{ $e.components?.get( 'document/elements' )?.utils?.getTitleForLibraryClose() }}}</span>
+			</div>
+		<# } #>
+		<div id="elementor-template-library-header-tools"></div>
+	</div>
+</script>
+
+<script type="text/template" id="tmpl-elementor-templates-modal__header__logo">
+	<span class="elementor-templates-modal__header__logo__icon-wrapper e-logo-wrapper">
+		<i class="eicon-elementor"></i>
+	</span>
+	<span class="elementor-templates-modal__header__logo__title">{{{ title }}}</span>
+</script>
+<script type="text/template" id="tmpl-elementor-finder">
+	<div id="elementor-finder__search">
+		<i class="eicon-search" aria-hidden="true"></i>
+		<input id="elementor-finder__search__input" placeholder="Type to find anything in Elementor" autocomplete="off">
+	</div>
+	<div id="elementor-finder__content"></div>
+</script>
+
+<script type="text/template" id="tmpl-elementor-finder-results-container">
+	<div id="elementor-finder__no-results">No Results Found</div>
+	<div id="elementor-finder__results"></div>
+</script>
+
+<script type="text/template" id="tmpl-elementor-finder__results__category">
+	<div class="elementor-finder__results__category__title">{{{ title }}}</div>
+	<div class="elementor-finder__results__category__items"></div>
+</script>
+
+<script type="text/template" id="tmpl-elementor-finder__results__item">
+	<a href="{{ url }}" class="elementor-finder__results__item__link">
+		<div class="elementor-finder__results__item__icon">
+			<i class="eicon-{{{ icon }}}" aria-hidden="true"></i>
+		</div>
+		<div class="elementor-finder__results__item__title">{{{ title }}}</div>
+		<# if ( description ) { #>
+			<div class="elementor-finder__results__item__description">- {{{ description }}}</div>
+		<# } #>
+
+		<# if ( lock ) { #>
+		<div class="elementor-finder__results__item__badge"><i class="{{{ lock.badge.icon }}}"></i>{{ lock.badge.text }}</div>
+		<# } #>
+	</a>
+	<# if ( actions.length ) { #>
+		<div class="elementor-finder__results__item__actions">
+		<# jQuery.each( actions, function() { #>
+			<a class="elementor-finder__results__item__action elementor-finder__results__item__action--{{ this.name }}" href="{{ this.url }}" target="_blank">
+				<i class="eicon-{{{ this.icon }}}"></i>
+			</a>
+		<# } ); #>
+		</div>
+	<# } #>
+</script>
+<link rel="stylesheet" id="webinane-shipping-dashboard-css" href="./express_files/main(1).css" media="all">
+<script src="./express_files/moment.min.js.download" id="moment-js"></script>
+<script id="moment-js-after">
+moment.updateLocale( 'en_US', {"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"week":{"dow":1},"longDateFormat":{"LT":"g:i a","LTS":null,"L":null,"LL":"F j, Y","LLL":"F j, Y g:i a","LLLL":null}} );
+</script>
+<script src="./express_files/hooks.min.js.download" id="wp-hooks-js"></script>
+<script src="./express_files/i18n.min.js.download" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script src="./express_files/underscore.min.js.download" id="underscore-js"></script>
+<script src="./express_files/popper.min.js.download" id="popper-js"></script>
+<script src="./express_files/vue.min.js.download" id="vuejs-js"></script>
+<script src="./express_files/vuex.min.js.download" id="vuex-js"></script>
+<script src="./express_files/element-ui.min.js.download" id="element-ui-js"></script>
+<script src="./express_files/element-ui-en.js.download" id="element-ui-en-js"></script>
+<script src="./express_files/map-init.js.download" id="map-init-js"></script>
+<script src="./express_files/js" id="google-map-js"></script>
+<script src="./express_files/index.js.download" id="webinane-shipping-dashboard-js"></script>
+
+<script>
+	jQuery( document ).ready( function ( $ )
+	{
+
+		"use strict";
+
+		$( '.open-panel' ).on( 'click', function ()
+		{
+			$( 'body' ).toggleClass( 'show-res-panel' );
+		} );
+
+	} );
+</script>
+
+
+
+
+</body><div id="smartyContainer" style="position: absolute; top: 0px; right: 0px; line-height: initial; z-index: 2147483647; width: auto; font-size: initial;"><template shadowrootmode="open"><style>@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v23/pxiEyp8kv8JHgFVrJJfedw.ttf) format('truetype');
+}
+@media screen and (max-width: 812px) {
+  #sm-coupon-container {
+    position: fixed;
+    bottom: -6000px;
+    z-index: 2147483647;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+  }
+  #sm-coupon-container.sm-animate-visible {
+    bottom: 0;
+  }
+  #sm-coupon-container.sm-centered {
+    bottom: 0;
+  }
+  #sm-coupon-container .sm-coupon-wrapper {
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 100vw;
+  }
+  #sm-coupon-container .sm-header {
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #eee;
+  }
+  #sm-coupon-container .sm-header .sm-logo1 {
+    margin: 7px 5px 0 5px;
+    cursor: pointer;
+  }
+  #sm-coupon-container .sm-header img.sm-logo1 {
+    width: 80px;
+  }
+  #sm-coupon-container .sm-header .sm-cross-icon {
+    float: right;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-right: 5px;
+  }
+  #sm-coupon-container .sm-header .sm-cross-icon img {
+    margin: 10px 14px;
+    width: 11px;
+  }
+  #sm-coupon-container .sm-activation-button {
+    font-size: 18px;
+    text-align: center;
+    min-width: 70%;
+    padding: 0 5px;
+    line-height: 40px;
+    border-radius: 5px;
+  }
+  #sm-coupon-container .sm-activation-button :hover {
+    font-size: 22px;
+    min-width: 85%;
+  }
+  #sm-coupon-container .sm-activation-button img {
+    height: 15px;
+  }
+  #sm-coupon-container .sm-support a {
+    font-size: 8px !important;
+  }
+  #sm-coupon-container .sm-coupon-codes {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  #sm-coupon-container .sm-valid-codes {
+    overflow: hidden;
+    height: 56px;
+  }
+  #sm-coupon-container #exclusions-text {
+    font-family: Verdana;
+    font-size: 8pt;
+    bottom: 40px;
+    background-color: #eeeeee;
+    color: #333333;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  #sm-coupon-container h1 {
+    font-size: 20px;
+  }
+  #sm-coupon-container h2 {
+    font-size: 18px;
+  }
+  #sm-coupon-container h3 {
+    font-size: 15px;
+  }
+  #sm-coupon-container h4 {
+    font-size: 12px;
+  }
+  #sm-coupon-container h5 {
+    font-size: 10px;
+  }
+  #sm-coupon-container h6 {
+    font-size: 10.2px;
+  }
+}
+@media screen and (min-width: 813px) {
+  #sm-coupon-container {
+    position: fixed;
+    z-index: 2147483647;
+    top: -8px;
+    right: -3600px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  #sm-coupon-container.sm-animate-visible {
+    right: 0;
+  }
+  #sm-coupon-container.sm-centered {
+    right: calc(50vw - 325px);
+    top: calc(50vh - 240px);
+  }
+  #sm-coupon-container .sm-coupon-wrapper {
+    width: 374px;
+  }
+  #sm-coupon-container .sm-header {
+    margin: 0px;
+    padding: 0 15px;
+  }
+  #sm-coupon-container .sm-header .sm-logo1 {
+    margin: 10px;
+    cursor: pointer;
+  }
+  #sm-coupon-container .sm-header .sm-cross-icon {
+    float: right;
+    margin-top: 11px;
+    cursor: pointer;
+  }
+  #sm-coupon-container .sm-activation-button {
+    font-size: 20px;
+    text-align: center;
+    min-width: 70%;
+    padding: 0 5px;
+    line-height: 45px;
+    border-radius: 5px;
+  }
+  #sm-coupon-container .sm-activation-button :hover {
+    font-size: 22px;
+    min-width: 85%;
+  }
+  #sm-coupon-container .sm-activation-button img {
+    height: 15px;
+  }
+  #sm-coupon-container .sm-coupon-codes {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #sm-coupon-container .sm-valid-codes {
+    overflow: hidden;
+    height: 62px;
+  }
+  #sm-coupon-container #exclusions-text {
+    font-family: Verdana;
+    font-size: 8pt;
+    margin-left: 15px;
+    position: absolute;
+    bottom: 40px;
+    width: 300px;
+    background-color: #eeeeee;
+    color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  #sm-coupon-container h1 {
+    font-size: 25px;
+  }
+  #sm-coupon-container h2 {
+    font-size: 20px;
+  }
+  #sm-coupon-container h3 {
+    font-size: 18px !important;
+    text-align: center !important;
+  }
+  #sm-coupon-container h4 {
+    font-size: 15px;
+  }
+  #sm-coupon-container h5 {
+    font-size: 12px;
+  }
+  #sm-coupon-container h6 {
+    font-size: 10.2px;
+  }
+}
+#sm-coupon-container.no-transition {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+#sm-coupon-container span#checkedCoupons,
+#sm-coupon-container span#totalCoupons {
+  font-size: inherit;
+}
+#sm-coupon-container .sm-coupon-wrapper {
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-right: 15px;
+  margin-top: 25px;
+}
+#sm-coupon-container a,
+#sm-coupon-container a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+#sm-coupon-container .sm-activation-button {
+  display: inline-block;
+  background-color: #6d6fd5 !important;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: 0.05s;
+  transition: 0.05s;
+  transition-timing-function: ease-in-out;
+}
+#sm-coupon-container #sm-style-4::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+#sm-coupon-container #sm-style-4::-webkit-scrollbar {
+  width: 4px;
+  background-color: #999999;
+}
+#sm-coupon-container #sm-style-4::-webkit-scrollbar-thumb {
+  background-color: #999999;
+  border: 2px solid #999999;
+}
+#sm-coupon-container .sm-margin0 {
+  margin: 0px;
+}
+#sm-coupon-container .sm-coupons {
+  background-color: #fff;
+  padding: 0px 10px;
+  width: 100%;
+  text-align: center;
+  text-transform: none;
+}
+#sm-coupon-container .sm-best-coupons {
+  background-color: #6d6fd5 !important;
+  display: inline-block;
+  padding: 0 55px;
+  line-height: 49px;
+  color: #fff !important;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+#sm-coupon-container .sm-claim {
+  background-color: #6d6fd5 !important;
+  display: inline-block;
+  padding: 0 55px;
+  line-height: 49px;
+  color: #fff !important;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+#sm-coupon-container .sm-invalid-codes {
+  width: initial;
+}
+#sm-coupon-container .sm-support {
+  float: left;
+  margin-right: 15px;
+  width: initial;
+}
+#sm-coupon-container .sm-support .sm-icon {
+  float: left;
+  height: 20px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+#sm-coupon-container .sm-support .sm-invalid {
+  transition: margin 0.1s;
+  -webkit-transition: margin 0.1s;
+  float: none;
+}
+#sm-coupon-container .sm-support .sm-valid {
+  margin: 5px;
+  transition: margin 0.1s;
+  -webkit-transition: margin 0.1s;
+}
+#sm-coupon-container .sm-support a {
+  width: 100%;
+  background-color: #e8e8e8 !important;
+  color: #6d6fd5 !important;
+  padding: 10px 8px;
+  font-size: 11px;
+  letter-spacing: 0.35px;
+  font-weight: 700;
+  border-radius: 5px;
+  min-width: 100px;
+  text-align: center;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+}
+#sm-coupon-container .sm-coupon-invalid {
+  background-color: #fff !important;
+  width: 100%;
+  opacity: 0.3;
+  border: solid 1px #e8e8e8;
+  color: #5e5e5e;
+  padding: 2px 0px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+#sm-coupon-container .sm-progress-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #6d6fd5;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  -o-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+}
+#sm-coupon-container .sm-progress {
+  height: 7px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+#sm-coupon-container .sm-not-working {
+  position: absolute;
+  bottom: 10px;
+  width: 374px;
+  right: 25px;
+  text-align: center;
+}
+#sm-coupon-container .sm-not-working a {
+  text-transform: none;
+  color: #6d6fd5;
+}
+#sm-coupon-container .sm-error-img {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+#sm-coupon-container .sm-error {
+  font-size: 14px;
+  margin-top: 30px;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#sm-coupon-container .sm-error ul {
+  text-align: left;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  list-style-type: disc !important;
+}
+#sm-coupon-container .sm-error ul li {
+  font-size: 14px;
+}
+#sm-coupon-container .sm-content {
+  font-size: 16px !important;
+  margin: 20px;
+  text-align: center;
+}
+#sm-coupon-container .sm-content a.sm-visit {
+  background-color: #6d6fd5 !important;
+  display: inline-block;
+  padding: 0 55px;
+  line-height: 49px;
+  color: #fff !important;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+#sm-coupon-container .sm-primary,
+#sm-coupon-container .sm-button {
+  background-color: #6d6fd5;
+  width: 100%;
+  line-height: 49px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  padding: 9px 15px;
+  border-radius: 5px;
+}
+#sm-coupon-container .sm-activate-later {
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #252d6a;
+}
+#sm-coupon-container .sm-coupon {
+  display: inline !important;
+  background-color: #e8e8e8 !important;
+  color: #6d6fd5 !important;
+  padding: 10px 20px !important;
+  font-size: 15px !important;
+  letter-spacing: 0.35px !important;
+  font-weight: 700 !important;
+  border-radius: 5px !important;
+  min-width: 100px !important;
+  text-align: center !important;
+}
+#sm-coupon-container .sm-share-coupon {
+  background-color: #6d6fd5 !important;
+  width: 100% !important;
+  line-height: 49px !important;
+  color: #fff !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  padding: 9px 15px !important;
+  border-radius: 5px !important;
+}
+#sm-coupon-container .sm-working-coupon {
+  color: #252d6a;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+#sm-coupon-container .sm-congrats {
+  color: #f5a80c;
+  font-size: 27px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 40px;
+}
+#sm-coupon-container .sm-green {
+  color: #00c57d;
+  font-weight: 700;
+  font-size: 20px;
+}
+#sm-coupon-container .sm-success-btn {
+  padding: 10px;
+  height: 42px;
+  overflow: hidden;
+  background-color: transparent;
+  border-color: #6d6fd5 !important;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  color: #6d6fd5;
+  font-weight: bold !important;
+  font-size: 15px !important;
+  cursor: pointer;
+}
+#sm-coupon-container .sm-button-disabled {
+  padding: 10px;
+  height: 42px;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  color: #aaa;
+  font-weight: bold !important;
+  font-size: 15px !important;
+  cursor: pointer;
+}
+#sm-coupon-container .sm-review {
+  background: #6d6fd5;
+  color: #fff;
+  width: 185px;
+  margin: auto;
+}
+#sm-coupon-container .sm-logo {
+  justify-self: start;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+#sm-coupon-container .sm-close {
+  margin: 5px 10px;
+  justify-self: end;
+  align-self: start;
+  cursor: pointer;
+}
+#sm-coupon-container .exclusions {
+  text-align: center;
+}
+#sm-coupon-container #exclusions-button {
+  font-weight: 600;
+  font-size: 9pt;
+  cursor: pointer;
+}
+#sm-coupon-container .exclusions-hidden {
+  display: none;
+}
+#sm-coupon-container .sm-code {
+  color: #6d6fd5;
+}
+#sm-coupon-container .sm-copy {
+  border: 1px solid #f5a80c;
+  background: #ffc954;
+}
+#sm-coupon-container .sm-coupon-list::-webkit-scrollbar-thumb {
+  background-color: #6d6fd5;
+}
+#sm-coupon-container .sm-go {
+  background-color: #f5a80c;
+  color: #FFF;
+}
+#sm-coupon-container .span-all {
+  grid-column: 1 / span 2;
+}
+#sm-coupon-container .sm-save {
+  font-size: 13pt;
+  font-weight: 800;
+  color: #252d6a;
+  margin-bottom: 15px;
+}
+#sm-coupon-container .sm-price-redirect {
+  cursor: pointer;
+}
+#sm-coupon-container .sm-refer-email {
+  padding: 10px;
+  height: 35px;
+  width: 175px;
+  border-color: #949393 !important;
+  border-radius: 8px 0px 0px 8px;
+  border-style: solid;
+  border-width: 1px;
+  outline: none;
+  font-size: 14px !important;
+}
+#sm-coupon-container .sm-refer-submit {
+  padding: 5px 7px 7px 8px;
+  height: 32px;
+  overflow: hidden;
+  background-color: #6d6fd5;
+  border-color: #6d6fd5 !important;
+  border-radius: 0px 8px 8px 0px;
+  border-style: solid;
+  border-width: 1px;
+  color: #fff;
+  font-size: 15px !important;
+  cursor: pointer;
+}
+#sm-coupon-container .sm-refer-btn {
+  margin: auto;
+  padding: 6px;
+  height: 38px;
+  width: 180px;
+  overflow: hidden;
+  background-color: transparent;
+  border-color: #6d6fd5 !important;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  color: #6d6fd5;
+  font-size: 15px !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+#sm-coupon-container .sm-referral-msg {
+  font-size: 14px !important;
+  margin: 5px;
+  font-weight: 500;
+  height: 40px;
+}
+#sm-coupon-container .sm-referral-success {
+  color: #00c57d;
+}
+#sm-coupon-container .sm-referral-error {
+  color: #ff0000;
+}
+#sm-coupon-container .sm-exclusions {
+  padding: 10px 0px;
+  color: #716f6f;
+  font-size: 14px;
+}
+#sm-coupon-container .sm-small-link {
+  text-decoration: underline;
+  color: #252d6a;
+  font-size: 8pt;
+  cursor: pointer;
+}
+#sm-inline-content {
+  all: initial;
+}
+#sm-inline-content .sm-searching-button {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  color: #888;
+  font-family: Poppins;
+  font-size: 11pt;
+  font-weight: bold;
+  margin: 5px 0;
+  padding-top: 5px;
+  height: 22px;
+}
+#sm-inline-content .sm-found-button {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 5px;
+  background-color: #6d6fd5;
+  color: #ffffff;
+  border: initial;
+  font-family: Poppins;
+  font-size: 11pt;
+  font-weight: bold;
+  margin: 5px 0;
+  padding-top: 5px;
+  height: 25px;
+  cursor: pointer;
+}
+#sm-inline-content .sm-img {
+  vertical-align: middle;
+  height: 20px;
+  margin-right: 5px;
+}
+#sm-inline-content .sm-loading {
+  vertical-align: middle;
+  height: 8px;
+}
+#sm-full-loader {
+  position: fixed;
+  z-index: 2147483646;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.7;
+}
+.bg-facebook {
+  background-color: #3c579e;
+}
+.bg-google {
+  background-color: #4285f4;
+}
+.bg-microsoft {
+  background-color: #2f2f2f;
+}
+.bg-apple {
+  background-color: #000000;
+}
+</style></template></div></html>

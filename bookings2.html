@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcel Details Form</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 70%
+    
+}
+
+.left-panel {
+    width: 50%;
+    padding: 20px;
+     border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 8%;
+    margin-right: -10%;
+}
+
+.right-panel {
+    width: 25%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: -10%;
+    border: 2px solid rgb(190, 4, 4);
+    margin-right: 8%;
+}
+
+input[type="text"], input[type="number"] {
+    width: 40%;
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+input[type="number"]{
+    width: 15%;
+}
+
+input[type="text"]:focus, input[type="number"]:focus{
+    border: 1px solid rgb(190, 4, 4);
+}
+
+input[type="radio"]:checked{
+    accent-color: rgb(207, 20, 7);
+}
+
+input[type="radio"]:checked + label{
+    color: rgb(207, 20, 7);
+}
+
+
+
+select {
+    width: 10%;
+    height: 55px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: rgb(168, 196, 248);
+}
+
+button {
+    font-size: medium;
+    font-weight: 500;
+}
+
+
+
+#book-now {
+     width: 30%;
+    height: 60px;
+    background-color: rgb(168, 196, 248);
+    color: rgb(0, 0, 14);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#book-now:hover {
+    background-color: rgb(187, 9, 9);
+    color: white;
+}
+
+#reset { 
+    width: 30%;
+    height: 60px;
+    background-color: white;
+    color: rgb(0, 0, 12);
+    padding: 10px;
+    border: 1px solid  rgb(153, 15, 15);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reset:hover {
+    background-color: rgb(153, 15, 15);
+    color: white;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+label {
+    margin-right: 20px;
+}
+
+#address-not-set {
+    color: #666;
+}
+
+#distance, #time, #dimensions, #weight-display {
+    font-weight: bold;
+}
+
+h2{
+    font-size: small;
+}
+
+.selectdiv {
+    margin-top: 5%;
+}
+
+.selectdiv h2{
+    margin-top: -4%;
+    margin-right: -7%;
+
+}
+
+.selectdiv select{
+    margin-right: 7%;
+    height: 52px;
+}
+
+@media only screen and (max-width: 768px) {
+    .left-panel{
+        width: 95%;
+    }
+    .right-panel{
+        width: 80%;
+        margin-left: -80%;
+        margin-top: 80%;
+        margin-bottom: 15%;
+    }
+    
+    #book-now, #reset{
+        margin-top: 100%;
+    }
+
+    #mediaexpress{
+        margin-top: -50%;
+        margin-bottom: 50%;
+    }
+
+    .sending-toe{
+        margin-top: -10%;
+    }
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Sending From</h2>
+            <input type="text" id="sending-from" placeholder="Sending from">
+           <div style="margin-left: 45%; margin-top: -14.8%; width: 50%;" class="sending-toe">
+            <h2>Sending To</h2>
+            <input type="text" id="sending-to" placeholder="Sending To" style="width: 80%;">
+            </div>
+            <h2>Weight</h2>
+            <input type="number" id="weight" placeholder="Weight">
+            <select id="weight-unit">
+                <option value="KG">KG</option>
+                <option value="G">G</option>
+            </select>
+            <div style="display: flex;" class="selectdiv">
+            <h2>Length</h2>
+            <input type="number" id="length" placeholder="Length">
+            <select id="length-unit">
+                <option value="L">L</option>
+                <option value="CM">CM</option>
+            </select>
+            <h2>Width</h2>
+            <input type="number" id="width" placeholder="Width">
+            <select id="width-unit">
+                <option value="W">W</option>
+                <option value="CM">CM</option>
+            </select>
+            <h2>Height</h2>
+            <input type="number" id="height" placeholder="Height">
+            <select id="height-unit">
+                <option value="H">H</option>
+                <option value="CM">CM</option>
+            </select>
+            </div>
+            <h2>Parcel Size</h2>
+            <input type="radio" id="small" name="parcel-size" value="Small" checked>
+            <label for="small">Small</label>
+            <input type="radio" id="medium" name="parcel-size" value="Medium">
+            <label for="medium">Medium</label>
+            <input type="radio" id="large" name="parcel-size" value="Large">
+            <label for="large">Large</label>
+            <h2 style="margin-top: 3%;">Temperature Control</h2>
+            <input type="checkbox" id="temperature-control">
+            <label for="temperature-control" style="margin-bottom: -5%;">Temperature Control</label>
+            <h2 style="margin-top: 1%; margin-bottom: -10%;">Express Service</h2>
+            <input type="checkbox" id="express-service">
+            <label for="express-service" style="margin-bottom: 25%;" id="mediaexpress">Express Service</label>
+            <button id="book-now" style="margin-top: 10%;">Book Now</button>
+            <button id="reset" style="margin-left: 5%;">Reset</button>
+        </div>
+        <div class="right-panel">
+            <h2>Distance</h2>
+            <p id="address-not-set"> <span id="sending-from-display"> Address </span> <span> -- </span> <span id="sending-to-display">Is Not Set</span></p>
+            <p id="distance">00.00 km</p>
+            <p id="time">00h 00min</p>
+            <h2>Dimensions</h2>
+            <p id="dimensions">L: 1 CM <br> W: 1 CM <br> H: 1 CM</p>
+            <h2>Weight</h2>
+            <p id="weight-display">Size: Small 1 KG</p>
+        </div>
+    </div>
+
+    <script>
+        // Get all input elements
+const sendingFromInput = document.getElementById('sending-from');
+const sendingToInput = document.getElementById('sending-to');
+const weightInput = document.getElementById('weight');
+const weightUnitSelect = document.getElementById('weight-unit');
+const lengthInput = document.getElementById('length');
+const lengthUnitSelect = document.getElementById('length-unit');
+const widthInput = document.getElementById('width');
+const widthUnitSelect = document.getElementById('width-unit');
+const heightInput = document.getElementById('height');
+const heightUnitSelect = document.getElementById('height-unit');
+const parcelSizeRadios = document.getElementsByName('parcel-size');
+const temperatureControlCheckbox = document.getElementById('temperature-control');
+const expressServiceCheckbox = document.getElementById('express-service');
+const bookNowButton = document.getElementById('book-now');
+const resetButton = document.getElementById('reset');
+
+// Get all display elements
+const addressNotSetParagraph = document.getElementById('address-not-set');
+const distanceParagraph = document.getElementById('distance');
+const timeParagraph = document.getElementById('time');
+const dimensionsParagraph = document.getElementById('dimensions');
+const weightDisplayParagraph = document.getElementById('weight-display');
+
+// Add event listeners to input elements
+sendingFromInput.addEventListener('input', updateSendingFrom);
+sendingToInput.addEventListener('input', updateSendingTo);
+weightInput.addEventListener('input', updateWeight);
+weightUnitSelect.addEventListener('change', updateWeightUnit);
+lengthInput.addEventListener('input', updateLength);
+lengthUnitSelect.addEventListener('change', updateLengthUnit);
+widthInput.addEventListener('input', updateWidth);
+widthUnitSelect.addEventListener('change', updateWidthUnit);
+heightInput.addEventListener('input', updateHeight);
+heightUnitSelect.addEventListener('change', updateHeightUnit);
+for (const radio of parcelSizeRadios) {
+    radio.addEventListener('change', updateParcelSize);
+}
+temperatureControlCheckbox.addEventListener('change', updateTemperatureControl);
+expressServiceCheckbox.addEventListener('change', updateExpressService);
+
+// Add event listeners to buttons
+bookNowButton.addEventListener('click', bookNow);
+resetButton.addEventListener('click', reset);
+
+// Update functions
+function updateSendingFrom() {
+    document.getElementById('sending-from-display').textContent = sendingFromInput.value;
+    console.log(`Sending from: ${sendingFromInput.value}`);
+}
+
+
+function updateSendingTo() {
+      document.getElementById('sending-to-display').textContent = sendingToInput.value;
+    console.log(`Sending to: ${sendingToInput.value}`);
+    if (sendingToInput.value !== '') {
+        // addressNotSetParagraph.style.display = 'none';
+        distanceParagraph.style.display = 'block';
+        timeParagraph.style.display = 'block';
+    } else {
+        addressNotSetParagraph.style.display = 'block';
+        distanceParagraph.style.display = 'none';
+        timeParagraph.style.display = 'none';
+    }
+}
+
+function updateWeight() {
+    weightDisplayParagraph.textContent = `Size: ${getParcelSize()} ${weightInput.value} ${weightUnitSelect.value}`;
+}
+
+function updateWeightUnit() {
+    weightDisplayParagraph.textContent = `Size: ${getParcelSize()} ${weightInput.value} ${weightUnitSelect.value}`;
+}
+
+function updateLength() {
+    dimensionsParagraph.textContent = `L: ${lengthInput.value} ${lengthUnitSelect.value} W: ${widthInput.value} ${widthUnitSelect.value} H: ${heightInput.value} ${heightUnitSelect.value}`;
+}
+
+function updateLengthUnit() {
+    dimensionsParagraph.textContent = `L: ${lengthInput.value} ${lengthUnitSelect.value} W: ${widthInput.value} ${widthUnitSelect.value} H: ${heightInput.value} ${heightUnitSelect.value}`;
+}
+
+function updateWidth() {
+    dimensionsParagraph.textContent = `L: ${lengthInput.value} ${lengthUnitSelect.value} W: ${widthInput.value} ${widthUnitSelect.value} H: ${heightInput.value} ${heightUnitSelect.value}`;
+}
+
+function updateWidthUnit() {
+    dimensionsParagraph.textContent = `L: ${lengthInput.value} ${lengthUnitSelect.value} W: ${widthInput.value} ${widthUnitSelect.value} H: ${heightInput.value} ${heightUnitSelect.value}`;
+}
+
+function updateHeight() {
+    dimensionsParagraph.textContent = `L: ${lengthInput.value} ${lengthUnitSelect.value} W: ${widthInput.value} ${widthUnitSelect.value} H: ${heightInput.value} ${heightUnitSelect.value}`;
+}
+
+function updateHeightUnit() {
+    dimensionsParagraph.textContent = `L: ${lengthInput.value} ${lengthUnitSelect.value} W: ${widthInput.value} ${widthUnitSelect.value} H: ${heightInput.value} ${heightUnitSelect.value}`;
+}
+
+
+function updateParcelSize() {
+    weightDisplayParagraph.textContent = `Size: ${getParcelSize()} ${weightInput.value}`}
+
+
+
+// Get parcel size
+function getParcelSize() {
+    for (const radio of parcelSizeRadios) {
+        if (radio.checked) {
+            return radio.value;
+        }
+    }
+    return '';
+
+}
+function updateTemperatureControl() {
+    console.log(`Temperature control: ${temperatureControlCheckbox.checked}`);
+}
+
+function updateExpressService() {
+    console.log(`Express service: ${expressServiceCheckbox.checked}`);
+}
+
+// Book now function
+function bookNow() {
+    console.log('Booking parcel...');
+    console.log(`Sending from: ${sendingFromInput.value}`);
+    console.log(`Sending to: ${sendingToInput.value}`);
+    console.log(`Weight: ${weightInput.value} ${weightUnitSelect.value}`);
+    console.log(`Dimensions: ${lengthInput.value} ${lengthUnitSelect.value} x ${widthInput.value} ${widthUnitSelect.value} x ${heightInput.value} ${heightUnitSelect.value}`);
+    console.log(`Parcel size: ${getParcelSize()}`);
+    console.log(`Temperature control: ${temperatureControlCheckbox.checked}`);
+    console.log(`Express service: ${expressServiceCheckbox.checked}`);
+    alert('Parcel booked successfully!');
+}
+
+// Reset function
+function reset() {
+    sendingFromInput.value = '';
+    sendingToInput.value = '';
+    weightInput.value = '';
+    lengthInput.value = '';
+    widthInput.value = '';
+    heightInput.value = '';
+    for (const radio of parcelSizeRadios) {
+        radio.checked = false;
+    }
+    temperatureControlCheckbox.checked = false;
+    expressServiceCheckbox.checked = false;
+    dimensionsParagraph.textContent = 'L:  CM W:  CM H:  CM';
+    weightDisplayParagraph.textContent = 'Size:  1 KG';
+    addressNotSetParagraph.style.display = 'block';
+    distanceParagraph.style.display = 'none';
+    timeParagraph.style.display = 'none';
+}
+
+
+    </script>
+</body>
+</html>

