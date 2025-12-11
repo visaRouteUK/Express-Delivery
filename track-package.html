@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+   <title>Your Package Journey – Visual Live Tracker</title>
+   <style>
+      html,
+      body {
+       
+         font-family: 'Segoe UI', sans-serif;
+      }
+
+      #map-container {
+         width: 100%;
+         height: 100%;
+         position: relative;
+      }
+
+      #world-map {
+         width: 100%;
+         height: 100%;
+         display: block;
+      }
+
+      .blinking-dot {
+         animation: blink 1.2s infinite ease-in-out;
+      }
+
+      @keyframes blink {
+
+         0%,
+         100% {
+            opacity: 1;
+         }
+
+         50% {
+            opacity: 0.2;
+         }
+      }
+
+      /* Top-left icon button */
+      #togglePanelBtn {
+         position: absolute;
+         top: 20px;
+         left: 20px;
+         background: #2b6cb0;
+         color: white;
+         border: none;
+         border-radius: 50%;
+         font-size: 22px;
+         width: 50px;
+         height: 50px;
+         cursor: pointer;
+         z-index: 1000;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      #packageStatus {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         background: white;
+         padding: 10px 18px;
+         border-radius: 10px;
+         font-weight: bold;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         z-index: 999;
+      }
+
+      /* Shipping panel */
+      #shippingPanel {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 400px;
+         background: white;
+         padding: 20px;
+         border-radius: 16px;
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+         z-index: 999;
+         display: none;
+      }
+
+      #closePanel {
+         position: absolute;
+         top: 10px;
+         right: 14px;
+         font-size: 42px;
+         background: none;
+         border: none;
+         cursor: pointer;
+         color: #aaa;
+      }
+
+      /* Tab buttons */
+      .switch-tabs {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 15px;
+      }
+
+      .switch-tabs button {
+         flex: 1;
+         padding: 10px;
+         border: none;
+         background-color: #edf2f7;
+         color: #2d3748;
+         cursor: pointer;
+         font-weight: bold;
+         border-radius: 5px;
+         transition: background 0.3s;
+      }
+
+      .switch-tabs button.active-tab {
+         background-color: #2b6cb0;
+         color: white;
+      }
+
+      /* Tab content */
+      .tab-content {
+         display: none;
+         animation: slide-in 0.3s ease;
+      }
+
+      .active-tab-content {
+         display: block;
+      }
+
+      @keyframes slide-in {
+         from {
+            transform: translateX(20px);
+            opacity: 0;
+         }
+
+         to {
+            transform: translateX(0);
+            opacity: 1;
+         }
+      }
+
+      /* Responsive */
+      @media (max-width: 480px) {
+         #shippingPanel {
+            width: 95%;
+            padding: 15px;
+         }
+
+         .switch-tabs button {
+            font-size: 14px;
+            padding: 8px;
+         }
+      }
+
+      /* Info Wrapper next to Show Details button */
+      #infoWrapper {
+         position: absolute;
+         top: 80px;
+         /* slightly below 📦 button */
+         left: 20px;
+         z-index: 1000;
+      }
+
+      /* ℹ️ info button */
+      #infoBtn {
+         font-size: 20px;
+         width: 45px;
+         height: 45px;
+         border-radius: 50%;
+         border: none;
+         background-color: #3182ce;
+         color: white;
+         cursor: pointer;
+         position: relative;
+         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      #infoBadge {
+         position: absolute;
+         top: -6px;
+         right: -6px;
+         background: red;
+         color: white;
+         font-size: 12px;
+         padding: 3px 6px;
+         border-radius: 50%;
+         font-weight: bold;
+         box-shadow: 0 0 0 2px white;
+      }
+
+      /* Info Panel (centered card) */
+      #infoPanel {
+         display: none;
+         position: fixed;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 360px;
+         background-color: #ffffff;
+         border-radius: 16px;
+         padding: 20px;
+         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+         z-index: 999;
+         text-align: left;
+      }
+
+      #infoPanel h3 {
+         margin-top: 0;
+         font-size: 18px;
+         color: #2d3748;
+         border-bottom: 1px solid #ddd;
+         padding-bottom: 8px;
+      }
+
+      #infoPanel ul {
+         list-style: none;
+         padding-left: 0;
+         margin: 0;
+      }
+
+      #infoPanel ul li {
+         padding: 8px 0;
+         border-bottom: 1px solid #eee;
+         font-size: 15px;
+         color: #4a5568;
+      }
+
+      #infoPanel ul li:last-child {
+         border-bottom: none;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 480px) {
+
+         #infoBtn,
+         #togglePanelBtn {
+            width: 42px;
+            height: 42px;
+         }
+
+         #infoPanel {
+            width: 90%;
+            padding: 16px;
+         }
+      }
+
+      
+      @media only screen and (max-width: 720px) {
+          #packageStatus {
+         position: absolute;
+         top: 200px;
+         right: 20px;
+         background: white;
+         padding: 10px 18px;
+         border-radius: 10px;
+         font-weight: bold;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         z-index: 999;
+      }
+
+       #shippingPanel {
+         position: absolute;
+        margin-top: 40%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 400px;
+         background: white;
+         padding: 20px;
+         border-radius: 16px;
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+         z-index: 999;
+         display: none;
+      }
+
+      #closePanel {
+         position: absolute;
+         top: 10px;
+         right: 14px;
+         font-size: 42px;
+         background: none;
+         border: none;
+         cursor: pointer;
+         color: #aaa;
+      }
+
+      }
+
+        @media only screen and (max-width: 375px) {
+          #packageStatus {
+         position: absolute;
+         top: 190px;
+         right: 20px;
+         background: white;
+         padding: 10px 18px;
+         border-radius: 10px;
+         font-weight: bold;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         z-index: 999;
+      }
+
+       #shippingPanel {
+         position: absolute;
+        margin-top: 40%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 80%;
+         max-width: 350px;
+         background: white;
+         padding: 20px;
+         border-radius: 16px;
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+         z-index: 999;
+         display: none;
+      }
+
+      #closePanel {
+         position: absolute;
+         top: 10px;
+         right: 14px;
+         font-size: 42px;
+         background: none;
+         border: none;
+         cursor: pointer;
+         color: #aaa;
+      }
+
+      }
+
+
+
+      #loaderOverlay {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: white;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         z-index: 9999;
+         transition: opacity 0.5s ease;
+      }
+
+      .loaderContent {
+         text-align: center;
+      }
+
+      .loader {
+         width: 70px;
+         height: 70px;
+         border: 10px solid #f3f3f3;
+         border-top: 10px solid #007bff;
+         border-radius: 50%;
+         animation: spin 1s linear infinite;
+         margin: 0 auto;
+      }
+
+      .loaderText {
+         margin-top: 20px;
+         color: #fff;
+         font-size: 18px;
+         font-family: Arial, sans-serif;
+      }
+
+      @keyframes spin {
+         to {
+            transform: rotate(360deg);
+         }
+      }
+
+      #loaderOverlay.hide {
+         opacity: 0;
+         pointer-events: none;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- Loader Overlay -->
+   <div id="loaderOverlay">
+      <div class="loaderContent">
+         <div class="loader"></div>
+         <p class="loaderText" style="color: black;">Loading your package details…</p>
+      </div>
+   </div>
+<!-- 
+   <div class="container">
+  <img src="World-Country-Map.jpg" alt="Image">
+  <div class="dot" id="dot"></div>
+  <div class="dot2" class="dot"></div>
+</div>
+<button id="start-button" style="position: absolute;
+margin-top: -50%;
+margin-left: 50%;" >Start</button>
+<button id="stop-button">Stop</button> -->
+
+   <div id="map-container">
+      <!-- Top-left icon button -->
+      <button id="togglePanelBtn" title="Show Shipping Info">
+         📦
+      </button>
+
+      <!-- Top-right status -->
+      <div id="packageStatus">
+         📍package in <span id="currentCountry">Loading...</span>
+      </div>
+
+      <!-- Centered shipping panel -->
+      <div id="shippingPanel">
+         <button id="closePanel">&times;</button>
+         <h2>Shipping Info</h2>
+
+         <div class="switch-tabs">
+            <button id="senderTab" class="active-tab">Sender</button>
+            <button id="receiverTab">Receiver</button>
+         </div>
+
+         <div id="senderContent" class="tab-content active-tab-content">
+            <h3>Sender Details</h3>
+            <p><strong>Name:</strong> John Smith</p>
+            <p><strong>Location:</strong> New York, USA</p>
+            <p><strong>Phone:</strong> +1 234 567 890</p>
+            <p><strong>Package Type:</strong> Fragile Goods</p>
+            <p><strong>Size:</strong> Medium Box</p>
+            <p><strong>Weight:</strong> 5.2 kg</p>
+         </div>
+
+         <div id="receiverContent" class="tab-content">
+            <h3>Receiver Details</h3>
+            <p><strong>Name:</strong> Jane Doe</p>
+            <p><strong>Address:</strong> 45 Downtown Lane, Moscow</p>
+            <p><strong>Phone:</strong> +1 987 654 321</p>
+            <p><strong>City/State:</strong> Moscow, Russia</p>
+            <p><strong>Delivery Note:</strong> Leave at the front desk</p>
+         </div>
+      </div>
+
+
+
+      <!-- Info button + panel -->
+      <div id="infoWrapper">
+         <button id="infoBtn" title="Package Updates">ℹ️</button>
+         <span id="infoBadge">3</span>
+
+         <!-- Centered Info Panel -->
+         <div id="infoPanel">
+            <h3>📦 Package Notifications</h3>
+            <ul>
+               <li>🛫 Package departed from Lagos</li>
+               <li>📍 Arrived at Russian Customs</li>
+               <li>🚚 In transit to final destination</li>
+            </ul>
+         </div>
+      </div>
+
+
+<div class="container">
+  <img src="World-Country-Map.jpg" alt="Image">
+  <div class="dot" id="dot"></div>
+  <div class="dot2" class="dot"></div>
+</div>
+<button id="start-button" style="position: absolute;
+margin-top: -50%;
+margin-left: 50%;" >Start</button>
+<button id="stop-button">Stop</button>
+
+
+      </div>
+ 
+
+
+
+
+<style>
+.container {
+  position: relative;
+  width: 100%; /* adjust to your image width */
+  height: 100%; /* adjust to your image height */
+}
+
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  left: 67%;
+  top: 27%; /* adjust to your desired y-position */
+}
+
+
+.dot2 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: blue;
+  left: 75%;
+  top: 38%; /* adjust to your desired y-position */
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+</style>
+
+
+<script>
+// Get the dot and buttons elements
+const dot = document.getElementById('dot');
+const startButton = document.getElementById('start-button');
+const stopButton = document.getElementById('stop-button');
+
+// Define the positions and speed
+let startPositionX = 75; // Start position X
+let startPositionY = 25; // Start position Y
+let stopPositionX = 71; // Stop position X
+let stopPositionY = 38; // Stop position Y
+let speedX = (stopPositionX - startPositionX) / 100; // Calculate speed X
+let speedY = (stopPositionY - startPositionY) / 100; // Calculate speed Y
+
+// Initialize variables
+let animationId;
+let x = startPositionX;
+let y = startPositionY;
+let isRunning = false;
+
+// Set initial dot position
+dot.style.left = x + '%';
+dot.style.top = y + '%';
+
+// Function to animate the dot
+function animateDot() {
+  if (!isRunning) {
+    isRunning = true;
+    animationId = setInterval(() => {
+      if (x < stopPositionX) {
+        x += speedX;
+        dot.style.left = x + '%';
+      }
+      if (y < stopPositionY) {
+        y += speedY;
+        dot.style.top = y + '%';
+      }
+      if (x >= stopPositionX && y >= stopPositionY) {
+        clearInterval(animationId);
+        animationId = null;
+        isRunning = false;
+        // Reset dot position
+        x = startPositionX;
+        y = startPositionY;
+        dot.style.left = x + '%';
+        dot.style.top = y + '%';
+      }
+    }, 160); // 16ms = 60fps
+  }
+}
+
+// Start animation when page loads
+window.addEventListener('load', () => {
+  animateDot();
+});
+
+// Start button event listener
+startButton.addEventListener('click', () => {
+  animateDot();
+});
+
+// Stop button event listener
+stopButton.addEventListener('click', () => {
+  clearInterval(animationId);
+  animationId = null;
+  isRunning = false;
+});
+
+// Optional: add a timer to stop the animation after a certain time
+setTimeout(() => {
+  clearInterval(animationId);
+}, 100000); // stop after 5 seconds
+</script>
+
+
+
+   
+
+   <script>
+      window.addEventListener("load", function () {
+         const loader = document.getElementById("loaderOverlay");
+         setTimeout(() => {
+            loader.classList.add("hide");
+         }, 1000); // 10 seconds
+      });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //    const svg = document.getElementById("world-map");
+      //    const paths = svg.querySelectorAll("path");
+      //    const usedColors = new Set();
+
+      //    function getRandomColor() {
+      //       let color, r, g, b;
+      //       do {
+      //          color = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+      //          r = parseInt(color.substr(1, 2), 16);
+      //          g = parseInt(color.substr(3, 2), 16);
+      //          b = parseInt(color.substr(5, 2), 16);
+      //       } while (
+      //          usedColors.has(color) ||
+      //          (r > 230 && g > 230 && b > 230)
+      //       );
+      //       usedColors.add(color);
+      //       return color;
+      //    }
+
+         // paths.forEach(path => {
+         //    path.setAttribute('fill', getRandomColor());
+         // });
+
+         // enter country
+
+         // const targetTitle = "Vietnam";
+         // const targetPath = Array.from(paths).find(p => p.getAttribute("title") === targetTitle);
+
+         // if (targetPath) {
+         //    const bbox = targetPath.getBBox();
+         //    const cx = bbox.x + bbox.width / 2;
+         //    const cy = bbox.y + bbox.height / 2;
+
+         //    const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+         //    dot.setAttribute("cx", cx);
+         //    dot.setAttribute("cy", cy);
+         //    dot.setAttribute("r", "16");
+         //    dot.setAttribute("fill", "red");
+         //    dot.setAttribute("class", "blinking-dot");
+
+         //    svg.appendChild(dot);
+
+         //    const countryText = document.getElementById("currentCountry");
+         //    if (countryText) countryText.textContent = targetTitle;
+         // } else {
+         //    console.warn("Target country not found: " + targetTitle);
+         // }
+
+         // Shipping panel toggle logic
+         const toggleBtn = document.getElementById("togglePanelBtn");
+         const closeBtn = document.getElementById("closePanel");
+         const panel = document.getElementById("shippingPanel");
+
+         if (toggleBtn && closeBtn && panel) {
+            toggleBtn.addEventListener("click", () => {
+               panel.style.display = panel.style.display === "none" ? "block" : "none";
+            });
+
+            closeBtn.addEventListener("click", () => {
+               panel.style.display = "none";
+            });
+
+            panel.style.display = "block";
+         }
+
+         // Switcher logic
+         const senderTab = document.getElementById("senderTab");
+         const receiverTab = document.getElementById("receiverTab");
+         const senderContent = document.getElementById("senderContent");
+         const receiverContent = document.getElementById("receiverContent");
+
+         if (senderTab && receiverTab && senderContent && receiverContent) {
+            senderTab.addEventListener("click", () => {
+               senderTab.classList.add("active-tab");
+               receiverTab.classList.remove("active-tab");
+               senderContent.classList.add("active-tab-content");
+               receiverContent.classList.remove("active-tab-content");
+            });
+
+            receiverTab.addEventListener("click", () => {
+               receiverTab.classList.add("active-tab");
+               senderTab.classList.remove("active-tab");
+               receiverContent.classList.add("active-tab-content");
+               senderContent.classList.remove("active-tab-content");
+            });
+         }
+         // Info button toggle
+         const infoBtn = document.getElementById("infoBtn");
+         const infoPanel = document.getElementById("infoPanel");
+
+         if (infoBtn && infoPanel) {
+            infoBtn.addEventListener("click", () => {
+               infoPanel.style.display = infoPanel.style.display === "block" ? "none" : "block";
+            });
+
+            // Optional: hide when clicking outside
+            document.addEventListener("click", (e) => {
+               if (!infoPanel.contains(e.target) && !infoBtn.contains(e.target)) {
+                  infoPanel.style.display = "none";
+               }
+            });
+         }
+
+     
+   </script>
+
+   </script>
+</body>
+
+</html>

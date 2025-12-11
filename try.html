@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+   <title>Your Package Journey – Visual Live Tracker</title>
+   <style>
+      html,
+      body {
+         margin: 0;
+         padding: 0;
+         height: 100%;
+         font-family: 'Segoe UI', sans-serif;
+      }
+
+      #map-container {
+         width: 100%;
+         height: 100vh;
+         position: relative;
+         overflow: hidden;
+      }
+
+      /* Container for the map image and dots */
+      .container {
+         position: relative;
+         width: 100%;
+         height: 100%;
+      }
+
+      .container img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         display: block;
+      }
+
+      /* The moving red dot */
+      .dot {
+         position: absolute;
+         width: 12px;
+         height: 12px;
+         border-radius: 50%;
+         background-color: red;
+         box-shadow: 0 0 6px rgba(255, 0, 0, 0.7);
+         pointer-events: none;
+         transition: left 0.3s linear, top 0.3s linear;
+      }
+
+      /* The static blue dot */
+      .dot2 {
+         position: absolute;
+         width: 12px;
+         height: 12px;
+         border-radius: 50%;
+         background-color: blue;
+         box-shadow: 0 0 6px rgba(0, 0, 255, 0.7);
+         pointer-events: none;
+         left: 80%;
+         top: 51%;
+      }
+
+      /* Top-left icon button */
+      #togglePanelBtn {
+         position: absolute;
+         top: 20px;
+         left: 20px;
+         background: #2b6cb0;
+         color: white;
+         border: none;
+         border-radius: 50%;
+         font-size: 22px;
+         width: 50px;
+         height: 50px;
+         cursor: pointer;
+         z-index: 1000;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      #packageStatus {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         background: white;
+         padding: 10px 18px;
+         border-radius: 10px;
+         font-weight: bold;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         z-index: 999;
+      }
+
+      /* Shipping panel */
+      #shippingPanel {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 400px;
+         background: white;
+         padding: 20px;
+         border-radius: 16px;
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+         z-index: 999;
+         display: none;
+      }
+
+      #closePanel {
+         position: absolute;
+         top: 10px;
+         right: 14px;
+         font-size: 42px;
+         background: none;
+         border: none;
+         cursor: pointer;
+         color: #aaa;
+      }
+
+      /* Tab buttons */
+      .switch-tabs {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 15px;
+      }
+
+      .switch-tabs button {
+         flex: 1;
+         padding: 10px;
+         border: none;
+         background-color: #edf2f7;
+         color: #2d3748;
+         cursor: pointer;
+         font-weight: bold;
+         border-radius: 5px;
+         transition: background 0.3s;
+      }
+
+      .switch-tabs button.active-tab {
+         background-color: #2b6cb0;
+         color: white;
+      }
+
+      /* Tab content */
+      .tab-content {
+         display: none;
+         animation: slide-in 0.3s ease;
+      }
+
+      .active-tab-content {
+         display: block;
+      }
+
+      @keyframes slide-in {
+         from {
+            transform: translateX(20px);
+            opacity: 0;
+         }
+
+         to {
+            transform: translateX(0);
+            opacity: 1;
+         }
+      }
+
+      /* Responsive */
+      @media (max-width: 480px) {
+         #shippingPanel {
+            width: 95%;
+            padding: 15px;
+         }
+
+         .switch-tabs button {
+            font-size: 14px;
+            padding: 8px;
+         }
+      }
+
+      /* Info Wrapper next to Show Details button */
+      #infoWrapper {
+         position: absolute;
+         top: 80px;
+         /* slightly below 📦 button */
+         left: 20px;
+         z-index: 1000;
+      }
+
+      /* ℹ️ info button */
+      #infoBtn {
+         font-size: 20px;
+         width: 45px;
+         height: 45px;
+         border-radius: 50%;
+         border: none;
+         background-color: #3182ce;
+         color: white;
+         cursor: pointer;
+         position: relative;
+         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      #infoBadge {
+         position: absolute;
+         top: -6px;
+         right: -6px;
+         background: red;
+         color: white;
+         font-size: 12px;
+         padding: 3px 6px;
+         border-radius: 50%;
+         font-weight: bold;
+         box-shadow: 0 0 0 2px white;
+      }
+
+      /* Info Panel (centered card) */
+      #infoPanel {
+         display: none;
+         position: fixed;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 360px;
+         background-color: #ffffff;
+         border-radius: 16px;
+         padding: 20px;
+         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+         z-index: 999;
+         text-align: left;
+      }
+
+      #infoPanel h3 {
+         margin-top: 0;
+         font-size: 18px;
+         color: #2d3748;
+         border-bottom: 1px solid #ddd;
+         padding-bottom: 8px;
+      }
+
+      #infoPanel ul {
+         list-style: none;
+         padding-left: 0;
+         margin: 0;
+      }
+
+      #infoPanel ul li {
+         padding: 8px 0;
+         border-bottom: 1px solid #eee;
+         font-size: 15px;
+         color: #4a5568;
+      }
+
+      #infoPanel ul li:last-child {
+         border-bottom: none;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 480px) {
+
+         #infoBtn,
+         #togglePanelBtn {
+            width: 42px;
+            height: 42px;
+         }
+
+         #infoPanel {
+            width: 90%;
+            padding: 16px;
+         }
+      }
+
+      /* Loader Overlay */
+      #loaderOverlay {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: white;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         z-index: 9999;
+         transition: opacity 0.5s ease;
+      }
+
+      .loaderContent {
+         text-align: center;
+      }
+
+      .loader {
+         width: 70px;
+         height: 70px;
+         border: 10px solid #f3f3f3;
+         border-top: 10px solid #007bff;
+         border-radius: 50%;
+         animation: spin 1s linear infinite;
+         margin: 0 auto;
+      }
+
+      .loaderText {
+         margin-top: 20px;
+         color: #000;
+         font-size: 18px;
+         font-family: Arial, sans-serif;
+      }
+
+      @keyframes spin {
+         to {
+            transform: rotate(360deg);
+         }
+      }
+
+      #loaderOverlay.hide {
+         opacity: 0;
+         pointer-events: none;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- Loader Overlay -->
+   <div id="loaderOverlay">
+      <div class="loaderContent">
+         <div class="loader"></div>
+         <p class="loaderText">Loading your package details…</p>
+      </div>
+   </div>
+
+   <div id="map-container">
+      <!-- Top-left icon button -->
+      <button id="togglePanelBtn" title="Show Shipping Info">
+         📦
+      </button>
+
+      <!-- Top-right status -->
+      <div id="packageStatus">
+         📍package in <span id="currentCountry">Loading...</span>
+      </div>
+
+      <!-- Centered shipping panel -->
+      <div id="shippingPanel">
+         <button id="closePanel">&times;</button>
+         <h2>Shipping Info</h2>
+
+         <div class="switch-tabs">
+            <button id="senderTab" class="active-tab">Sender</button>
+            <button id="receiverTab">Receiver</button>
+         </div>
+
+         <div id="senderContent" class="tab-content active-tab-content">
+            <h3>Sender Details</h3>
+            <p><strong>Name:</strong> John Smith</p>
+            <p><strong>Location:</strong> New York, USA</p>
+            <p><strong>Phone:</strong> +1 234 567 890</p>
+            <p><strong>Package Type:</strong> Fragile Goods</p>
+            <p><strong>Size:</strong> Medium Box</p>
+            <p><strong>Weight:</strong> 5.2 kg</p>
+         </div>
+
+         <div id="receiverContent" class="tab-content">
+            <h3>Receiver Details</h3>
+            <p><strong>Name:</strong> Jane Doe</p>
+            <p><strong>Address:</strong> 45 Downtown Lane, Moscow</p>
+            <p><strong>Phone:</strong> +1 987 654 321</p>
+            <p><strong>City/State:</strong> Moscow, Russia</p>
+            <p><strong>Delivery Note:</strong> Leave at the front desk</p>
+         </div>
+      </div>
+
+      <!-- Info button + panel -->
+      <div id="infoWrapper">
+         <button id="infoBtn" title="Package Updates">ℹ️</button>
+         <span id="infoBadge">3</span>
+
+         <!-- Centered Info Panel -->
+         <div id="infoPanel">
+            <h3>📦 Package Notifications</h3>
+            <ul>
+               <li>🛫 Package departed from Lagos</li>
+               <li>📍 Arrived at Russian Customs</li>
+               <li>🚚 In transit to final destination</li>
+            </ul>
+         </div>
+      </div>
+
+      <!-- Map with dots -->
+      <div class="container">
+         <img src="World-Country-Map.jpg" alt="World Map" />
+         <div class="dot" id="dot"></div>
+         <div class="dot2"></div>
+      </div>
+   </div>
+   <script>
+    const dot = document.getElementById('dot');
+
+let x = localStorage.getItem('dotX') ? parseFloat(localStorage.getItem('dotX')) : 67;
+let y = localStorage.getItem('dotY') ? parseFloat(localStorage.getItem('dotY')) : 27;
+
+const speedX = 0.5;
+const speedY = 0.015;
+const stopPositionX = 98;
+const stopPositionY = 19;
+
+dot.style.left = x + '%';
+dot.style.top = y + '%';
+
+function animateDot() {
+  if (x < stopPositionX) {
+    x += speedX;
+    if (x > stopPositionX) x = stopPositionX;
+    dot.style.left = x + '%';
+  }
+  if (y > stopPositionY) {
+    y -= speedY;
+    if (y < stopPositionY) y = stopPositionY;
+    dot.style.top = y + '%';
+  }
+  localStorage.setItem('dotX', x);
+  localStorage.setItem('dotY', y);
+
+  if (x < stopPositionX || y > stopPositionY) {
+    requestAnimationFrame(animateDot);
+  }
+}
+
+startButton.addEventListener('click', () => {
+  animationId = animationId || setInterval(() => {
+    if (x < stopPositionX) {
+    x += speedX;
+    dot.style.left = x + '%';
+    } else {
+         clearInterval(animationId);
+  animationId = null;
+    }
+     if (y < stopPositionY) {
+        y += speedY;
+    dot.style.top = y + '%';
+     } else {
+         clearInterval(animationId);
+  animationId = null;
+     }
+    if (x > 200) { // adjust to your image width
+      x = 68;
+    }
+     if (y > 100) { // adjust to your image height
+      y = 27;
+    }
+
+    
+  }, 1600); // 16ms = 60fps
+ 
+});
+
+stopButton.addEventListener('click', () => {
+  clearInterval(animationId);
+  animationId = null;
+//   x =0;
+});
+
+
+window.addEventListener('load', () => {
+  animateDot();
+});
+
+   </script>
+</body>
+
+</html>
