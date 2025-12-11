@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Choose Payment Method</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- <body>
+  <h1>Country Selector</h1>
+  <form class="form-group">
+    <label for="continent">Select Continent:</label>
+    <select id="continent" name="continent" class="form-group">
+      <option value="">Select Continent</option>
+      <option value="Africa">Africa</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+      <option value="Australia/Oceania">Australia/Oceania</option>
+      <option value="Antarctica">Antarctica</option>
+    </select>
+    <div id="country-container" style="display: none;" class="form-group">
+      <label for="country">Select Country:</label>
+      <select id="country" name="country" class="form-group">
+      </select>
+    </div>
+    <div id="city-container" style="display: none;" class="form-group">
+      <label for="city">Select City/State:</label>
+      <select id="city" name="city" class="form-group">
+      </select>
+    </div>
+  </form> -->
+<!-- 
+<style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+#country-container, #city-container {
+  margin-top: 20px;
+}
+
+
+</style>
+
+<script>
+    
+const continentSelect = document.getElementById('continent');
+const countryContainer = document.getElementById('country-container');
+const countrySelect = document.getElementById('country');
+const cityContainer = document.getElementById('city-container');
+const citySelect = document.getElementById('city');
+
+const countries = {
+  Africa: ['Egypt', 'South Africa', 'Nigeria', 'Morocco', 'Algeria'],
+  Asia: ['China', 'India', 'Japan', 'South Korea', 'Thailand'],
+  Europe: ['Germany', 'United Kingdom', 'France', 'Italy', 'Spain'],
+  'North America': ['United States', 'Canada', 'Mexico'],
+  'South America': ['Brazil', 'Argentina', 'Chile', 'Peru', 'Colombia'],
+  'Australia/Oceania': ['Australia', 'New Zealand', 'Fiji'],
+  Antarctica: []
+};
+
+const cities = {
+  Egypt: ['Cairo', 'Alexandria', 'Giza'],
+  'South Africa': ['Johannesburg', 'Cape Town', 'Durban'],
+  Nigeria: ['Lagos', 'Abuja', 'Kano'],
+  Morocco: ['Rabat', 'Casablanca', 'Marrakech'],
+  Algeria: ['Algiers', 'Oran', 'Constantine'],
+  China: ['Beijing', 'Shanghai', 'Guangzhou'],
+  India: ['Mumbai', 'Delhi', 'Bangalore'],
+  Japan: ['Tokyo', 'Osaka', 'Nagoya'],
+  'South Korea': ['Seoul', 'Busan', 'Daegu'],
+  Thailand: ['Bangkok', 'Chiang Mai', 'Phuket'],
+  Germany: ['Berlin', 'Munich', 'Hamburg'],
+  'United Kingdom': ['London', 'Birmingham', 'Manchester'],
+  France: ['Paris', 'Lyon', 'Marseille'],
+  Italy: ['Rome', 'Milan', 'Naples'],
+  Spain: ['Madrid', 'Barcelona', 'Valencia'],
+  'United States': ['New York City', 'Los Angeles', 'Chicago'],
+  Canada: ['Toronto', 'Vancouver', 'Montreal'],
+  Mexico: ['Mexico City', 'Guadalajara', 'Monterrey'],
+  Brazil: ['Brasília', 'Rio de Janeiro', 'São Paulo'],
+  Argentina: ['Buenos Aires', 'Córdoba', 'Mendoza'],
+  Chile: ['Santiago', 'Valparaíso', 'Concepción'],
+  Peru: ['Ladakh', 'Cusco', 'Lima'],
+  Colombia: ['Bogotá', 'Medellín', 'Cali'],
+  Australia: ['Sydney', 'Melbourne', 'Brisbane'],
+  'New Zealand': ['Auckland', 'Wellington', 'Christchurch'],
+  Fiji: ['Suva', 'Lautoka', 'Nadi']
+};
+
+continentSelect.addEventListener('change', (e) => {
+  const selectedContinent = e.target.value;
+  if (selectedContinent !== '') {
+    countryContainer.style.display = 'block';
+    countrySelect.innerHTML = '<option value="">Select Country</option>';
+    countries[selectedContinent].forEach((country) => {
+      const option = document.createElement('option');
+      option.value = country;
+      option.text = country;
+      countrySelect.appendChild(option);
+    });
+  } else {
+    countryContainer.style.display = 'none';
+    cityContainer.style.display = 'none';
+  }
+});
+
+countrySelect.addEventListener('change', (e) => {
+  const selectedCountry = e.target.value;
+  if (selectedCountry !== '') {
+    cityContainer.style.display = 'block';
+    citySelect.innerHTML = '<option value="">Select City/State</option>';
+    cities[selectedCountry].forEach((city) => {
+      const option = document.createElement('option');
+      option.value = city;
+      option.text = city;
+      citySelect.appendChild(option);
+    });
+  } else {
+    cityContainer.style.display = 'none';
+  }
+});
+
+
+
+
+
+
+
+</script>
+
+
+ -->
+<!-- 
+<div id="map" style="width: 800px; height: 600px;"></div>
+  <div id="info"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  
+<style>
+    #map {
+  border: 1px solid black;
+}
+
+#info {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  width: 800px;
+}
+
+
+</style>
+
+<script>
+    let map = L.map('map').setView([51.505, -0.09], 3);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+  subdomains: ['a', 'b', 'c']
+}).addTo(map);
+
+let marker = L.circleMarker([51.505, -0.09], {
+  radius: 5,
+  color: 'red',
+  fillColor: 'red',
+  fillOpacity: 1
+}).addTo(map);
+
+let infoDiv = document.getElementById('info');
+
+let countrie = [
+  { name: 'United Kingdom', lat: 51.505, lng: -0.09 },
+  { name: 'France', lat: 48.8566, lng: 2.3522 },
+  { name: 'Germany', lat: 52.5200, lng: 13.4050 },
+  { name: 'Italy', lat: 41.8719, lng: 12.5674 },
+  { name: 'Spain', lat: 40.4168, lng: -3.7038 }
+];
+
+let currentCountryIndex = 0;
+let stopped = false;
+let stopTimeout;
+
+function getDistance(lat1, lng1, lat2, lng2) {
+  const R = 6371; // km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const lat1Rad = lat1 * Math.PI / 180;
+  const lat2Rad = lat2 * Math.PI / 180;
+
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.sin(dLng / 2) * Math.sin(dLng / 2) * Math.cos(lat1Rad) * Math.cos(lat2Rad);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+  return distance;
+}
+
+function moveMarker() {
+  if (currentCountryIndex >= countries.length - 1) {
+    currentCountryIndex = 0;
+  }
+
+  let country = countries[currentCountryIndex];
+  let nextCountry = countries[currentCountryIndex + 1];
+
+  let distance = getDistance(country.lat, country.lng, nextCountry.lat, nextCountry.lng);
+  let speed = 800; // km/h
+  let time = distance / speed * 3600000; // convert hours to milliseconds
+
+  infoDiv.innerHTML = `Country: ${country.name} -> ${nextCountry.name}, Distance: ${distance.toFixed(2)} km, Time: ${(time / 60000).toFixed(2)} minutes`;
+
+  if (Math.random() < 0.2) {
+    stopped = true;
+    infoDiv.innerHTML += `<br>Stopped for 5 seconds`;
+    stopTimeout = setTimeout(() => {
+      stopped = false;
+      animateMarker(country, nextCountry, time);
+    }, 5000);
+  } else {
+    animateMarker(country, nextCountry, time);
+  }
+
+  currentCountryIndex++;
+}
+
+function animateMarker(startCountry, endCountry, time) {
+  let startLat = startCountry.lat;
+  let startLng = startCountry.lng;
+  let endLat = endCountry.lat;
+  let endLng = endCountry.lng;
+
+  let latStep = (endLat - startLat) / 100;
+  let lngStep = (endLng - startLng) / 100;
+  let i = 0;
+
+  marker.setLatLng([startLat, startLng]);
+
+  let animationInterval = setInterval(() => {
+    if (i >= 100) {
+      clearInterval(animationInterval);
+      moveMarker();
+    } else {
+      let lat = startLat + i * latStep;
+      let lng = startLng + i * lngStep;
+      marker.setLatLng([lat, lng]);
+      i++;
+    }
+  }, time / 100);
+}
+
+moveMarker();
+
+
+
+</script>
+ -->
+
+<div class="payment-container">
+    <h1>Payment Options</h1>
+    <div class="payment-methods">
+      <div class="payment-method" id="card-payment" style="display: none;">
+        <h2>Card Payment</h2>
+        <form id="card-form">
+          <label for="card-number">Card Number:</label>
+          <input type="text" id="card-number" name="card-number">
+          <label for="expiration-date">Expiration Date:</label>
+          <input type="text" id="expiration-date" name="expiration-date">
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv">
+          <button id="pay-with-card" style="width: 25%;  background-color: rgb(197, 216, 111); padding: 10px 10px; margin-left: 40%; border: none;border-radius: 5px;">Pay with Card</button>
+        </form>
+      </div>
+      <div class="payment-method" id="bank-transfer" style="display: none;">
+        <h2>Bank Transfer</h2>
+        <p>Account Number: 1234567890</p>
+        <p>Bank Name: Example Bank</p>
+        <button id="pay-with-bank-transfer" style="width: 25%;  background-color: rgb(197, 216, 111); padding: 10px 10px; margin-left: 40%; border: none;border-radius: 5px;">I have made the Transfer</button>
+      </div>
+      <div class="payment-method" id="crypto-payment" style="display: none;">
+        <h2>Crypto Currency Payment</h2>
+        <p>Wallet Address: <span>0x1234567890abcdef</span> </p><span> (Bitcoin)</span>
+        <p>Wallet Address: <span>0x1234567890abcdef</span> </p><span> (USDT)</span>
+        <p>Wallet Address: <span>0x1234567890abcdef</span> </p><span> (Ethereum)</span>
+        <p>Wallet Address: <span>0x1234567890abcdef</span></p><span> (Solana)</span> <br>
+        <button id="pay-with-crypto" style="width: 25%;  background-color: rgb(197, 216, 111); padding: 10px 10px; margin-top: 4%; margin-left: 0%; border: none;border-radius: 5px;">Confirm Transaction</button>
+      </div>
+    </div>
+    <hr style="border: 1px solid white;">
+    <div class="payment-method-selector">
+      <button id="select-card-payment" >Card</button>
+      <button id="select-bank-transfer">Bank Transfer</button>
+      <button id="select-crypto-payment">Crypto</button>
+    </div>
+  </div>
+
+<style>
+    .payment-container {
+  width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgb(23, 33, 84);
+  color: #fff;
+}
+
+#card-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#card-form label {
+  margin-bottom: 10px;
+}
+
+
+
+#card-form input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+#crypto-payment{
+  text-align: center;
+}
+
+.payment-container h1 {
+  text-align: center;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-method {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.payment-method-selector {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.payment-method-selector button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(197, 216, 111);
+  color: black;
+  cursor: pointer;
+}
+
+.payment-method-selector button:hover {
+  background-color: rgb(131, 148, 57);
+  color: #fff;
+}
+
+
+</style>
+
+<script>
+    let cardPaymentButton = document.getElementById('select-card-payment');
+let bankTransferButton = document.getElementById('select-bank-transfer');
+let cryptoPaymentButton = document.getElementById('select-crypto-payment');
+
+let cardPaymentDiv = document.getElementById('card-payment');
+let bankTransferDiv = document.getElementById('bank-transfer');
+let cryptoPaymentDiv = document.getElementById('crypto-payment');
+
+cardPaymentButton.addEventListener('click', () => {
+  cardPaymentDiv.style.display = 'block';
+  bankTransferDiv.style.display = 'none';
+  cryptoPaymentDiv.style.display = 'none';
+});
+
+bankTransferButton.addEventListener('click', () => {
+  cardPaymentDiv.style.display = 'none';
+  bankTransferDiv.style.display = 'block';
+  cryptoPaymentDiv.style.display = 'none';
+});
+
+cryptoPaymentButton.addEventListener('click', () => {
+  cardPaymentDiv.style.display = 'none';
+  bankTransferDiv.style.display = 'none';
+  cryptoPaymentDiv.style.display = 'block';
+});
+
+document.getElementById('pay-with-card').addEventListener('click', (e) => {
+  e.preventDefault();
+  let cardNumber = document.getElementById('card-number').value;
+  let expirationDate = document.getElementById('expiration-date').value;
+  let cvv = document.getElementById('cvv').value;
+  console.log(`Card Number: ${cardNumber}, Expiration Date: ${expirationDate}, CVV: ${cvv}`);
+  alert('Card payment successful!');
+});
+
+document.getElementById('pay-with-bank-transfer').addEventListener('click', () => {
+  alert('Please transfer the amount to the account number: 1234567890');
+});
+
+document.getElementById('pay-with-crypto').addEventListener('click', () => {
+  alert('Please transfer the amount to the wallet address: 0x1234567890abcdef');
+});
+
+
+
+</script>
+
+
+
+</body>
+</html>

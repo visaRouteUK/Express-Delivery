@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Card</title>
+</head>
+<body>
+   
+
+<div class="card-payment-container">
+    <h1>Card Payment</h1>
+    <form id="card-form">
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456">
+      <label for="expiration-date">Expiration Date:</label>
+      <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/YYYY">
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" placeholder="123">
+      <label for="cardholder-name">Cardholder Name:</label>
+      <input type="text" id="cardholder-name" name="cardholder-name" placeholder="John Doe">
+      <button id="pay-with-card">Pay with Card</button>
+    </form>
+    <div id="payment-errors"></div>
+  </div>
+<style>
+    .card-payment-container {
+  width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#card-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#card-form label {
+  margin-bottom: 10px;
+}
+
+#card-form input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+#pay-with-card {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+#payment-errors {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+</style>
+
+<script>
+    let cardForm = document.getElementById('card-form');
+let cardNumberInput = document.getElementById('card-number');
+let expirationDateInput = document.getElementById('expiration-date');
+let cvvInput = document.getElementById('cvv');
+let cardHolderNameInput = document.getElementById('card-holder-name');
+let paymentErrors = document.getElementById('payment-errors');
+
+cardForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let cardNumber = cardNumberInput.value;
+  let expirationDate = expirationDateInput.value;
+  let cvv = cvvInput.value;
+  let cardHolderName = cardHolderNameInput.value;
+
+  // Validate card number
+  if (!validateCardNumber(cardNumber)) {
+    paymentErrors.textContent = 'Invalid card number';
+    return;
+  }
+
+  // Validate expiration date
+  if (!validateExpirationDate(expirationDate)) {
+    paymentErrors.textContent = 'Invalid expiration date';
+    return;
+  }
+
+  // Validate CVV
+  if (!validateCVV(cvv)) {
+    paymentErrors.textContent = 'Invalid CVV';
+    return;
+  }
+
+  // Validate card holder name
+  if (!validateCardHolderName(cardHolderName)) {
+    paymentErrors.textContent = 'Invalid card holder name';
+    return;
+  }
+
+  // Make payment request
+  makePaymentRequest(cardNumber, expirationDate, cvv, cardHolderName);
+});
+
+function validateCardNumber(cardNumber) {
+  // Remove spaces and dashes
+  cardNumber = cardNumber.replace(/ /g, '').replace(/-/g, '');
+  // Check if card number is valid
+  return /^\d{13,16}$/.test(cardNumber);
+}
+
+function validateExpirationDate(expirationDate) {
+  // Check if expiration date is in MM/YYYY format
+  let dateParts = expirationDate.split('/');
+  if (dateParts.length !== 2) return false;
+  let month = parseInt(dateParts[0]);
+  let year = parseInt(dateParts[1]);
+  let currentYear = new Date().getFullYear();
+  let currentMonth = new Date().getMonth() + 1;
+  return month >= 1 && month <= 12 && year >= currentYear && (year > currentYear || month >= currentMonth);
+}
+
+function validateCVV(cvv) {
+  // Check if CVV is 3 or 4 digits
+  return /^\d{3,4}$/.test(cvv);
+}
+
+function validateCardHolderName(cardHolderName) {
+  // Check if card holder name is not empty
+  return cardHolderName.trim() !== '';
+}
+
+function makePaymentRequest(cardNumber, expirationDate, cvv, cardHolderName) {
+  // Implement payment request logic here
+  alert(`Payment request made with card number: ${cardNumber.replace(/ /g, '').replace(/-/g, '')}, expiration date: ${expirationDate}, CVV: ${cvv}, card holder name: ${cardHolderName}`);
+  paymentErrors.textContent = '';
+  cardForm.reset();
+  alert('Payment successful!');
+}
+
+
+</script> 
+</body>
+</html>

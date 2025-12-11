@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Victims | Rescue Loved Ones Now</title>
+  <link rel="shortcut icon" href="/assets/logo4.png" type="image/webp" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #333; }
+
+    header.hero {
+      background: linear-gradient(to bottom, #0d1b2a, #1b263b, #415a77), url('your-hero-image.jpg') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    header.hero h1 { font-size: 3em; margin-bottom: 15px; }
+    header.hero p { font-size: 1.2em; margin-bottom: 30px; }
+    .btn {
+      padding: 12px 25px;
+      background-color: #e63946;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+    .btn:hover { background-color: #d62828; }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #0d1b2a;
+    }
+    .steps, .stories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .step, .story {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .step i {
+      font-size: 24px;
+      color: #0077b6;
+      margin-bottom: 10px;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    form input, form textarea, form button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    textarea{
+      resize: none;
+    }
+    form button {
+      background-color: #0d1b2a;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: #1b263b;
+    }
+    footer {
+      background: #0d1b2a;
+      color: #cfd9e0;
+      padding: 60px 20px 30px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-about, .footer-links, .footer-contact {
+      flex: 1 1 250px;
+    }
+    .footer-container h3 {
+      color: white;
+      margin-bottom: 15px;
+    }
+    .footer-about p, .footer-contact p {
+      color: #cfd9e0;
+      font-size: 15px;
+    }
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+    .footer-links ul li a {
+      color: #cfd9e0;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links ul li a:hover {
+      color: white;
+    }
+    .footer-social a {
+      color: #cfd9e0;
+      font-size: 18px;
+      margin-right: 12px;
+      transition: color 0.3s;
+    }
+    .footer-social a:hover {
+      color: white;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #9baec8;
+      border-top: 1px solid #3e5c76;
+      padding-top: 20px;
+    }
+    .how-it-works {
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #0d1b2a;
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.step {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 280px;
+  flex: 1 1 250px;
+}
+
+.step i {
+  font-size: 36px;
+  color: #007BFF;
+  margin-bottom: 15px;
+}
+
+.step h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #0d1b2a;
+}
+
+.step p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Rescue Loved Ones Now</h1>
+    <p>Every second counts. Help us bring families back together.</p>
+    <a href="#rescue-form" class="btn">Start a Rescue Request</a>
+  </header>
+
+  <section>
+    <h2 class="section-title">Why This Matters</h2>
+    <p>War and conflict have separated families across borders. Our mission is to reunite loved ones using verified information, trained search teams, and global coordination. With your help, we can act fast and save lives.</p>
+  </section>
+
+  <section id="rescue-form">
+    <h2 class="section-title">Rescue Request Form</h2>
+    <form id="rescue">
+      <input type="text" placeholder="Your Full Name" name="name" required>
+      <input type="email" placeholder="Your Email Address" name="email" required>
+      <input type="text" placeholder="Missing Person's Full Name" name="second_name" required>
+      <input type="text" placeholder="Last Known Location" name="location" required>
+      <input type="text" placeholder="Your Relationship to Them" name="relationship" required>
+      <textarea rows="4" placeholder="Additional Description (e.g. age, clothing, health status)"name="disc" ></textarea>
+      <input type="file" accept="image/*" name="img">
+      <button type="submit">Submit Request</button>
+    </form>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-container">
+  
+      <div class="step">
+        <i class="fas fa-file-alt"></i>
+        <h3>1. Submit Information</h3>
+        <p>Fill out the rescue request form with details about your missing loved one — name, last known location, and a recent photo. Every detail increases the chance of success.</p>
+      </div>
+  
+      <div class="step">
+        <i class="fas fa-search-location"></i>
+        <h3>2. Our Team Verifies</h3>
+        <p>Our trained volunteers and partner organizations verify the details to rule out misinformation and prepare an action plan. We’ll contact you if more information is needed.</p>
+      </div>
+  
+      <div class="step">
+        <i class="fas fa-handshake"></i>
+        <h3>3. Search & Coordination</h3>
+        <p>We collaborate with local authorities, humanitarian groups, and field teams to initiate the search — whether it’s refugee camps, hospitals, or checkpoints.</p>
+      </div>
+  
+      <div class="step">
+        <i class="fas fa-heart"></i>
+        <h3>4. Receive Updates</h3>
+        <p>We provide you with regular updates and next steps. If the person is found, we help you reconnect through secure communication and transport arrangements where possible.</p>
+      </div>
+  
+    </div>
+  </section>
+  
+
+  <section>
+    <h2 class="section-title">Real Rescue Stories</h2>
+    <div class="stories">
+      <div class="story">
+        <h4>Daniel's Return</h4>
+        <p>After 7 months, Daniel was reunited with his sister thanks to your submissions and local search efforts.</p>
+      </div>
+      <div class="story">
+        <h4>Amina's Safe Rescue</h4>
+        <p>Displaced during conflict, Amina was found and safely returned through our West Africa partners.</p>
+      </div>
+      <div class="story">
+        <h4>Hope from Ukraine</h4>
+        <p>In the midst of the crisis, our team was able to locate a missing child and reunite her with her grandparents in Lviv.</p>
+      </div>
+      <div class="story">
+        <h4>Giza Family Found</h4>
+        <p>During turmoil in Egypt, three siblings were safely located and brought back to their family in Giza.</p>
+      </div>
+      <div class="story">
+        <h4>Israel Mission Success</h4>
+        <p>A grandfather separated during evacuation in Israel was identified and safely returned to his family after a nationwide effort.</p>
+      </div>
+      <div class="story">
+        <h4>Iranian Teen Reunited</h4>
+        <p>Our local teams collaborated with volunteers to help a teenage girl return to her home after months of being displaced in Iran.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We support war victims through community programs, relief efforts, and advocacy. Join us in making a difference.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html" >Home</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="index.html#projects">Programs</a></li>
+          <li><a href="index.html#wps">Testimonials</a></li>
+          <li><a href="RescueNow.html">Rescue Loved One's</a></li>
+          <li><a href="FAQs.html">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Email: warvictims237@gmail.com</p>
+        <!-- <p>Phone: +123 456 7890</p> -->
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 War Victims Support. All rights reserved.</p>
+    </div>
+  </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("rescue");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form reload
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch("https://formspree.io/f/mdkenbez", { // Replace with your Formspree ID
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "We-Understand.html"; // Redirect after submission
+        } else {
+          alert("Reset application failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("An error occurred while applying.");
+      });
+    });
+  });
+</script>
+</body>
+</html>

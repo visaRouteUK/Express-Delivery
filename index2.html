@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Profile — Weavers Logistics</title>
+  <!-- Local stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="owl.carousel.min.css">
+  <link rel="stylesheet" href="simpleLightbox.css">
+  <link rel="stylesheet" href="nice-select.css">
+  <link rel="stylesheet" href="animate.css">
+  <link rel="stylesheet" href="jquery-ui.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="form-card">
+      <h2>Create Your Shipping Profile</h2>
+      <form id="userForm" novalidate>
+        <div class="input-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your full name" required>
+          <span class="error-message" id="fullNameError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+          <span class="error-message" id="emailError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter your phone number" required>
+          <span class="error-message" id="phoneError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="packageSize">Package Size</label>
+          <input type="text" id="packageSize" placeholder="e.g., 30×20×15 cm" required>
+          <span class="error-message" id="packageSizeError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="packageWeight">Package Weight</label>
+          <input type="text" id="packageWeight" placeholder="e.g., 2.5kg" required>
+          <span class="error-message" id="packageWeightError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="packageType">Package Type</label>
+          <select id="packageType" required>
+            <option value="">Select type</option>
+            <option>Fragile</option>
+            <option>Document</option>
+            <option>Electronics</option>
+            <option>Clothing</option>
+            <option>Other</option>
+          </select>
+          <span class="error-message" id="packageTypeError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="senderName">Sender's Name</label>
+          <input type="text" id="senderName" placeholder="Enter sender's name" required>
+          <span class="error-message" id="senderNameError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="senderEmail">Sender's Email</label>
+          <input type="email" id="senderEmail" placeholder="Enter sender's email" required>
+          <span class="error-message" id="senderEmailError"></span>
+        </div>
+        
+        <div class="input-group">
+          <label for="shipmentMode">Mode of Shipment</label>
+          <select id="shipmentMode" required>
+            <option value="">Select mode</option>
+            <option>Air</option>
+            <option>Sea</option>
+            <option>Land</option>
+            <option>Courier</option>
+          </select>
+          <span class="error-message" id="shipmentModeError"></span>
+        </div>
+        
+        <button type="submit" id="submitBtn">Generate Login Code</button>
+      </form>
+
+      <div id="codeDisplay" class="code-display" style="display: none;">
+        <p>Your Login Code: <span id="loginCode"></span></p>
+        <button id="copyCodeBtn">Copy Code</button>
+        <p id="redirectMessage">Redirecting in <span id="countdown">10</span> seconds...</p>
+      </div>
+
+      <div id="loader" class="loader" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

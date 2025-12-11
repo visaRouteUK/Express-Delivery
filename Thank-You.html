@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | War Victims Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: white;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .thankyou-box {
+      background: linear-gradient(to bottom, #004080, #001f40);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 40px 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .thankyou-box h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .thankyou-box p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      color: #e0e0e0;
+    }
+
+    .impact {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    .redirect-info {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 15px;
+    }
+
+    .redirect-info a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .thankyou-box h1 {
+        font-size: 28px;
+      }
+
+      .thankyou-box p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="thankyou-box">
+    <h1>Thank You for Your Generosity ❤️</h1>
+    <p>Your donation has been received, and your compassion is already at work.</p>
+
+    <div class="impact">
+      <p>You’ve helped give hope to someone lost in conflict, and your kindness will echo far beyond today. Together, we’re saving lives, one step at a time.</p>
+    </div>
+
+    <p class="redirect-info">
+      You will be redirected to the homepage in <strong>10 seconds</strong>.<br>
+      If not, <a href="index.html">click here</a>.
+    </p>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 10000); // 10 seconds
+  </script>
+
+</body>
+</html>
